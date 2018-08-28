@@ -1,0 +1,10 @@
+C:\Development\Joe\Russell\bin\x86\Release\Russell.exe.config
+C:\Development\Joe\Russell\bin\x86\Release\Russell.exe
+C:\Development\Joe\Russell\bin\x86\Release\Russell.pdb
+C:\Development\Joe\Russell\obj\x86\Release\Russell.Form1.resources
+C:\Development\Joe\Russell\obj\x86\Release\Russell.Properties.Resources.resources
+C:\Development\Joe\Russell\obj\x86\Release\Russell.csproj.GenerateResource.cache
+C:\Development\Joe\Russell\obj\x86\Release\Russell.csproj.CoreCompileInputs.cache
+C:\Development\Joe\Russell\obj\x86\Release\Russell.exe
+C:\Development\Joe\Russell\obj\x86\Release\Russell.pdb
+C:\Development\Joe\Russell\obj\x86\Release\Russell.csprojAssemblyReference.cache
