@@ -261,8 +261,8 @@ namespace Russell
                 using (OleDbCommand comm = new OleDbCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, Hours, Rate, PaymentReceivedDate, TotalPaymentReceived) ");
-                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @Hours, @Rate, @PaymentReceivedDate, @TotalPaymentReceived) ");
+                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment) ");
+                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment) ");
 
                     comm.CommandText = sb.ToString();
                     comm.Connection = conn;
@@ -274,6 +274,8 @@ namespace Russell
                     comm.Parameters.AddWithValue("@Endjob", dj.EndJob);
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
+
+                    Convert.ToInt32(comm.ExecuteScalar());
 
                     return;
                 }
@@ -478,7 +480,7 @@ namespace Russell
         }
 
 
-        public void MarkRowAsPaid(int jobId)
+        public void SQLMarkRowAsPaid(int jobId)
         {
             using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
             {
@@ -502,7 +504,30 @@ namespace Russell
             }
         }
 
-        public void MarkRowAsUnPaid(int jobId)
+        public void OLEMarkRowAsPaid(int jobId)
+        {
+            using (OleDbConnection conn = new OleDbConnection(Constants.ConnectionString))
+            {
+                conn.Open();
+
+                using (OleDbCommand comm = new OleDbCommand())
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("UPDATE Job SET PaymentReceived = 1 ");
+                    sb.AppendLine("WHERE JobId = @JobId ");
+
+                    comm.CommandText = sb.ToString();
+                    comm.Connection = conn;
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@JobId", jobId);
+
+                    Convert.ToInt32(comm.ExecuteScalar());
+
+                    return;
+                }
+            }
+        }
+        public void SQLMarkRowAsUnPaid(int jobId)
         {
             using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
             {
@@ -526,28 +551,77 @@ namespace Russell
             }
         }
 
-        public string GetAgencyWebsite(int agencyId)
+        public void OLEMarkRowAsUnPaid(int jobId)
         {
-            string agencyWebsite;
-
-            using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+            using (OleDbConnection conn = new OleDbConnection(Constants.ConnectionString))
             {
                 conn.Open();
 
-                using (SqlCommand comm = new SqlCommand())
+                using (OleDbCommand comm = new OleDbCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("SELECT Website FROM Agency");
-                    sb.AppendLine("WHERE AgencyId = @AgencyId ");
+                    sb.AppendLine("UPDATE Job SET PaymentReceived = 0 ");
+                    sb.AppendLine("WHERE JobId = @JobId ");
 
                     comm.CommandText = sb.ToString();
                     comm.Connection = conn;
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@AgencyId", agencyId);
+                    comm.Parameters.AddWithValue("@JobId", jobId);
 
-                    agencyWebsite = (comm.ExecuteScalar().ToString());
+                    Convert.ToInt32(comm.ExecuteScalar());
 
-                    return agencyWebsite;
+                    return;
+                }
+            }
+        }
+        public string GetAgencyWebsite(int agencyId)
+        {
+            string agencyWebsite;
+
+            if (Constants.DBMS == "MSSQL")
+            {
+                using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine("SELECT Website FROM Agency");
+                        sb.AppendLine("WHERE AgencyId = @AgencyId ");
+
+                        comm.CommandText = sb.ToString();
+                        comm.Connection = conn;
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@AgencyId", agencyId);
+
+                        agencyWebsite = (comm.ExecuteScalar().ToString());
+
+                        return agencyWebsite;
+                    }
+                }
+            }
+            else
+            {
+                using (OleDbConnection conn = new OleDbConnection(Constants.ConnectionString))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand comm = new OleDbCommand())
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine("SELECT Website FROM Agency");
+                        sb.AppendLine("WHERE AgencyId = @AgencyId ");
+
+                        comm.CommandText = sb.ToString();
+                        comm.Connection = conn;
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@AgencyId", agencyId);
+
+                        agencyWebsite = (comm.ExecuteScalar().ToString());
+
+                        return agencyWebsite;
+                    }
                 }
             }
         }

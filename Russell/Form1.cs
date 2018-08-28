@@ -129,7 +129,14 @@ namespace Russell
                 //Remove from database
                 using (Sql sql = new Sql())
                 {
-                    sql.MarkRowAsPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    if (Constants.DBMS == "MSSQL")
+                    {
+                        sql.SQLMarkRowAsPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    }
+                    else
+                    {
+                        sql.OLEMarkRowAsPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    }
                     rownumber = row.Index;
                 }
             }
@@ -155,7 +162,14 @@ namespace Russell
                 //Remove from database
                 using (Sql sql = new Sql())
                 {
-                    sql.MarkRowAsUnPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    if (Constants.DBMS == "MSSQL")
+                    {
+                        sql.SQLMarkRowAsUnPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    }
+                    else
+                    {
+                        sql.OLEMarkRowAsUnPaid(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                    }
                     rownumber = row.Index;
                 }
             }
