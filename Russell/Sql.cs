@@ -261,21 +261,21 @@ namespace Russell
                 using (OleDbCommand comm = new OleDbCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment) ");
-                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment) ");
-
+                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, PaymentReceived, TotalPayment) ");
+                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @PaymentReceived, @TotalPayment) ");
+                    //StartJob, Endjob, @StartJob, @EndJob, 
                     comm.CommandText = sb.ToString();
                     comm.Connection = conn;
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@EmployeeId", dj.EmployeeId);
                     comm.Parameters.AddWithValue("@AgencyId", dj.AgencyId);
                     comm.Parameters.AddWithValue("@JobDetails", dj.JobDetails);
-                    comm.Parameters.AddWithValue("@StartJob", dj.StartJob);
-                    comm.Parameters.AddWithValue("@Endjob", dj.EndJob);
+                    //comm.Parameters.AddWithValue("@StartJob", DateTime.Now.ToString("yyyy-MM-dd"));
+                    comm.Parameters.AddWithValue("@Endjob", DateTime.Now.ToString("yyyy-MM-dd"));
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
 
-                    Convert.ToInt32(comm.ExecuteScalar());
+                    comm.ExecuteScalar();
 
                     return;
                 }
