@@ -64,7 +64,15 @@ namespace Russell
                     //Remove from database
                     using (Sql sql = new Sql())
                     {
-                        sql.SQLDeleteJob(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                        if (Constants.DBMS == "MSSQL")
+                        {
+                            sql.SQLDeleteJob(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                        }
+                        else
+                        {
+                            sql.OLEDeleteJob(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value));
+                        }
+                        
                     }
                     //Remove from DataGridView
                     dataGridViewJobs.Rows.RemoveAt(row.Index);

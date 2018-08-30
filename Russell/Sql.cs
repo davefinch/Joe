@@ -261,21 +261,21 @@ namespace Russell
                 using (OleDbCommand comm = new OleDbCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, PaymentReceived, TotalPayment) ");
-                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @PaymentReceived, @TotalPayment) ");
-                    //StartJob, Endjob, @StartJob, @EndJob, 
+                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment) ");
+                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment) ");
                     comm.CommandText = sb.ToString();
+                   
                     comm.Connection = conn;
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@EmployeeId", dj.EmployeeId);
                     comm.Parameters.AddWithValue("@AgencyId", dj.AgencyId);
                     comm.Parameters.AddWithValue("@JobDetails", dj.JobDetails);
-                    //comm.Parameters.AddWithValue("@StartJob", DateTime.Now.ToString("yyyy-MM-dd"));
-                    comm.Parameters.AddWithValue("@Endjob", DateTime.Now.ToString("yyyy-MM-dd"));
+                    comm.Parameters.AddWithValue("@StartJob", Convert.ToDateTime(dj.StartJob).ToString());
+                    comm.Parameters.AddWithValue("@Endjob", Convert.ToDateTime(dj.EndJob).ToString());
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
 
-                    comm.ExecuteScalar();
+                    comm.ExecuteNonQuery();
 
                     return;
                 }
@@ -479,6 +479,29 @@ namespace Russell
             }
         }
 
+        public void OLEDeleteJob(int jobId)
+        {
+            using (OleDbConnection conn = new OleDbConnection(Constants.ConnectionString))
+            {
+                conn.Open();
+
+                using (OleDbCommand comm = new OleDbCommand())
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("DELETE FROM Job ");
+                    sb.AppendLine("WHERE JobId = @JobId ");
+
+                    comm.CommandText = sb.ToString();
+                    comm.Connection = conn;
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@JobId", jobId);
+
+                    Convert.ToInt32(comm.ExecuteScalar());
+
+                    return;
+                }
+            }
+        }
 
         public void SQLMarkRowAsPaid(int jobId)
         {
