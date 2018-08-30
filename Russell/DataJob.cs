@@ -20,6 +20,15 @@ namespace Russell
     //23	1	2	Warner Bros - Watford Junction, Day 2	2018-08-14 08:51:58.000	2018-08-14 08:51:58.000	100	NULL NULL    False
     //28    1   1   Natwest Advert - Bromley.   2018-08-15 00:00:00.000	2018-08-15 00:00:00.000	100	10	10	False    
     //29    1   1   Warner Bros - Spiderman Stanstead Airport.   2018-08-16 00:00:00.000	2018-08-16 00:00:00.000	100	10	10	False    
+    //
+    //
+    //
+    //
+    //
+    //Lemsip Advert - Woolwich 29/08/2018
+    //Project X - Wimbledon 30/08/2018
+
+
     public class DataJob
     {
         public int JobId { get; set; }
