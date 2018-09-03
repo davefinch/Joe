@@ -90,7 +90,7 @@ namespace Russell
 
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("SELECT j.JobId, j.EmployeeId, e.FirstName, e.LastName, j.AgencyId, a.AgencyName, j.JobDetails, ");
-                    sb.AppendLine("j.StartJob, j.EndJob, j.hours, j.Rate, j.PaymentReceived, j.TotalPayment  ");
+                    sb.AppendLine("j.StartJob, j.EndJob, j.PaymentReceived, j.TotalPayment  ");
                     sb.AppendLine("FROM Job j INNER JOIN ");
                     sb.AppendLine("Employee e ON e.EmployeeId = j.EmployeeId INNER JOIN ");
                     sb.AppendLine("Agency a ON a.AgencyId = j.AgencyId ");
