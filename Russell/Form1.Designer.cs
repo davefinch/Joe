@@ -41,9 +41,6 @@
             this.EndJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PaymentReceived = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.jobBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jODataSet = new Russell.JODataSet();
-            this.jobTableAdapter = new Russell.JODataSetTableAdapters.JobTableAdapter();
             this.labelStartDate = new System.Windows.Forms.Label();
             this.dateTimePickerStartJob = new System.Windows.Forms.DateTimePicker();
             this.labelAgency = new System.Windows.Forms.Label();
@@ -82,12 +79,15 @@
             this.labelLast90Days = new System.Windows.Forms.Label();
             this.labelLast60Days = new System.Windows.Forms.Label();
             this.labelLast30Days = new System.Windows.Forms.Label();
+            this.jobBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.jODataSet = new Russell.JODataSet();
+            this.jobTableAdapter = new Russell.JODataSetTableAdapters.JobTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).BeginInit();
             this.groupBoxEntry.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewJobs
@@ -180,20 +180,6 @@
             this.PaymentReceived.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.PaymentReceived.Width = 65;
             // 
-            // jobBindingSource
-            // 
-            this.jobBindingSource.DataMember = "Job";
-            this.jobBindingSource.DataSource = this.jODataSet;
-            // 
-            // jODataSet
-            // 
-            this.jODataSet.DataSetName = "JODataSet";
-            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jobTableAdapter
-            // 
-            this.jobTableAdapter.ClearBeforeFill = true;
-            // 
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
@@ -211,6 +197,7 @@
             this.dateTimePickerStartJob.Name = "dateTimePickerStartJob";
             this.dateTimePickerStartJob.Size = new System.Drawing.Size(177, 22);
             this.dateTimePickerStartJob.TabIndex = 6;
+            this.dateTimePickerStartJob.ValueChanged += new System.EventHandler(this.dateTimePickerStartJob_ValueChanged_1);
             // 
             // labelAgency
             // 
@@ -353,13 +340,14 @@
             // 
             // buttonBackup
             // 
+            this.buttonBackup.Enabled = false;
             this.buttonBackup.Location = new System.Drawing.Point(812, 126);
             this.buttonBackup.Name = "buttonBackup";
             this.buttonBackup.Size = new System.Drawing.Size(75, 28);
             this.buttonBackup.TabIndex = 24;
             this.buttonBackup.Text = "Backup";
             this.buttonBackup.UseVisualStyleBackColor = true;
-            this.buttonBackup.Click += new System.EventHandler(this.buttonBackup_Click);
+            this.buttonBackup.Visible = false;
             // 
             // textBoxJobId
             // 
@@ -577,6 +565,20 @@
             this.labelLast30Days.TabIndex = 0;
             this.labelLast30Days.Text = "Last 30 Days:";
             // 
+            // jobBindingSource
+            // 
+            this.jobBindingSource.DataMember = "Job";
+            this.jobBindingSource.DataSource = this.jODataSet;
+            // 
+            // jODataSet
+            // 
+            this.jODataSet.DataSetName = "JODataSet";
+            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // jobTableAdapter
+            // 
+            this.jobTableAdapter.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -592,14 +594,14 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
             this.groupBoxEntry.ResumeLayout(false);
             this.groupBoxEntry.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

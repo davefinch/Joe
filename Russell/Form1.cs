@@ -369,8 +369,15 @@ namespace Russell
                     dataGridViewJobs.Rows[index].Cells["EndJob"].Value = item.EndJob;
                     dataGridViewJobs.Rows[index].Cells["PaymentReceived"].Value = item.PaymentReceived;
                     dataGridViewJobs.Rows[index].Cells["TotalPayment"].Value = item.TotalPayment;
-
+                    
+                    if (item.PaymentReceived) // Have received payment
+                    {
+                        //dataGridViewJobs.BackColor = Color.Green;
+                        dataGridViewJobs.Rows[index].DefaultCellStyle.BackColor = Color.Green;
+                        dataGridViewJobs.Rows[index].DefaultCellStyle.ForeColor = Color.White;
+                    }
                 }
+
             }
         }
 
@@ -514,12 +521,14 @@ namespace Russell
             textBoxJobId.Text = "0";
         }
 
-        private void buttonBackup_Click(object sender, EventArgs e)
+
+
+        private void dateTimePickerStartJob_ValueChanged_1(object sender, EventArgs e)
         {
-            
+            dateTimePickerEndJob.Value = dateTimePickerStartJob.Value;
         }
 
-
+       
 
 
     }
