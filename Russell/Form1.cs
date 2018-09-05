@@ -119,7 +119,7 @@ namespace Russell
                     dateTimePickerStartJob.Value = Convert.ToDateTime(item.StartJob);
                     dateTimePickerEndJob.Value = Convert.ToDateTime(item.EndJob);
                     checkBox1.Checked = item.PaymentReceived; // Cannot rename as pops open the save as dialog ?????
-                    textBoxTotalPayment.Text = item.TotalPayment.ToString();
+                    textBoxTotalPayment.Text = Math.Round(Convert.ToDecimal(item.TotalPayment), 2).ToString(); //item.TotalPayment.ToString();
 
                 }
             }
@@ -300,38 +300,11 @@ namespace Russell
             }
         }
 
-
-
-
-
-
-
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridViewJobs.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
             dataGridViewJobs.Rows[e.RowIndex].Selected = true;
         }
-
-        private void dataGridViewJobs_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void eToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void jobRefresh()
         {
@@ -357,6 +330,9 @@ namespace Russell
                 // Function determined by the type of db we are connecting to
                 if (Constants.DBMS == "MSSQL") { listDataJob = sql.SQLGetJobs(0); } else { listDataJob = sql.OLEGetJobs(0); }
 
+                int jobsPaid = 0;
+                int jobsUnpaid = 0;
+
                 foreach (DataJob item in listDataJob)
                 {
                     var index = dataGridViewJobs.Rows.Add();
@@ -369,13 +345,24 @@ namespace Russell
                     dataGridViewJobs.Rows[index].Cells["EndJob"].Value = item.EndJob;
                     dataGridViewJobs.Rows[index].Cells["PaymentReceived"].Value = item.PaymentReceived;
                     dataGridViewJobs.Rows[index].Cells["TotalPayment"].Value = item.TotalPayment;
-                    
+
+                    // Colour the rows green if payment received
                     if (item.PaymentReceived) // Have received payment
                     {
-                        //dataGridViewJobs.BackColor = Color.Green;
                         dataGridViewJobs.Rows[index].DefaultCellStyle.BackColor = Color.Green;
                         dataGridViewJobs.Rows[index].DefaultCellStyle.ForeColor = Color.White;
+                        jobsPaid++;
                     }
+                    else
+                    {
+                        jobsUnpaid++;
+                    }
+
+
+
+                    //string jobCount = listDataJob.Count.ToString() + " jobs.";
+                    labelJobCount.Text = listDataJob.Count.ToString() + " jobs (" + jobsPaid.ToString() + " Paid & " + 
+                                jobsUnpaid.ToString() + " Unpaid)";
                 }
 
             }

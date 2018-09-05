@@ -82,12 +82,15 @@
             this.jobBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jODataSet = new Russell.JODataSet();
             this.jobTableAdapter = new Russell.JODataSetTableAdapters.JobTableAdapter();
+            this.groupBoxJobHistory = new System.Windows.Forms.GroupBox();
+            this.labelJobCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).BeginInit();
             this.groupBoxEntry.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).BeginInit();
+            this.groupBoxJobHistory.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewJobs
@@ -110,7 +113,6 @@
             this.dataGridViewJobs.Name = "dataGridViewJobs";
             this.dataGridViewJobs.Size = new System.Drawing.Size(1148, 417);
             this.dataGridViewJobs.TabIndex = 0;
-            this.dataGridViewJobs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewJobs_CellContentClick);
             // 
             // JobId
             // 
@@ -379,7 +381,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1185, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1178, 28);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -579,11 +581,31 @@
             // 
             this.jobTableAdapter.ClearBeforeFill = true;
             // 
+            // groupBoxJobHistory
+            // 
+            this.groupBoxJobHistory.Controls.Add(this.labelJobCount);
+            this.groupBoxJobHistory.Location = new System.Drawing.Point(16, 741);
+            this.groupBoxJobHistory.Name = "groupBoxJobHistory";
+            this.groupBoxJobHistory.Size = new System.Drawing.Size(1148, 66);
+            this.groupBoxJobHistory.TabIndex = 13;
+            this.groupBoxJobHistory.TabStop = false;
+            this.groupBoxJobHistory.Text = "Job History";
+            // 
+            // labelJobCount
+            // 
+            this.labelJobCount.AutoSize = true;
+            this.labelJobCount.Location = new System.Drawing.Point(8, 32);
+            this.labelJobCount.Name = "labelJobCount";
+            this.labelJobCount.Size = new System.Drawing.Size(12, 17);
+            this.labelJobCount.TabIndex = 0;
+            this.labelJobCount.Text = ".";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1185, 735);
+            this.ClientSize = new System.Drawing.Size(1178, 819);
+            this.Controls.Add(this.groupBoxJobHistory);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxEntry);
             this.Controls.Add(this.dataGridViewJobs);
@@ -602,6 +624,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
+            this.groupBoxJobHistory.ResumeLayout(false);
+            this.groupBoxJobHistory.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -660,6 +684,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn PaymentReceived;
         private System.Windows.Forms.TextBox textBoxJobId;
         private System.Windows.Forms.Button buttonBackup;
+        private System.Windows.Forms.GroupBox groupBoxJobHistory;
+        private System.Windows.Forms.Label labelJobCount;
     }
 }
 
