@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace Russell
@@ -45,7 +46,40 @@ namespace Russell
                 comboBoxAgency.DisplayMember = "Key";
                 comboBoxAgency.ValueMember = "Value";
             }
+
+            // Set up radio button event handlers
+            radioButtonData.CheckedChanged += new EventHandler(radioButtonData_CheckedChanged);
+            radioButtonGraph.CheckedChanged += new EventHandler(radioButtonData_CheckedChanged);
+
+            chartJobs.Series.Clear();
+            var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+            {
+                Name = "Series1",
+                Color = System.Drawing.Color.Green,
+                IsVisibleInLegend = false,
+                IsXValueIndexed = true,
+                ChartType = SeriesChartType.Line
+            };
+
+            this.chartJobs.Series.Add(series1);
+
+            for (int i = 0; i < 100; i++)
+            {
+                series1.Points.AddXY(i, f(i));
+            }
+            chartJobs.Invalidate();
         }
+
+        private double f(int i)
+        {
+            var f1 = 59894 - (8128 * i) + (262 * i * i) - (1.6 * i * i * i);
+            return f1;
+        }
+
+
+
+
+
 
 
         private void dgv_DeleteSelectedRow()
@@ -361,7 +395,7 @@ namespace Russell
 
 
                     //string jobCount = listDataJob.Count.ToString() + " jobs.";
-                    labelJobCount.Text = listDataJob.Count.ToString() + " jobs (" + jobsPaid.ToString() + " Paid & " + 
+                    labelJobCount.Text = listDataJob.Count.ToString() + " jobs (" + jobsPaid.ToString() + " Paid && " + 
                                 jobsUnpaid.ToString() + " Unpaid)";
                 }
 
@@ -515,7 +549,23 @@ namespace Russell
             dateTimePickerEndJob.Value = dateTimePickerStartJob.Value;
         }
 
-       
+        private void radioButtonData_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonData.Checked)
+            {
+                dataGridViewJobs.BringToFront();
+                chartJobs.SendToBack();
+            }
+            else if (radioButtonGraph.Checked)
+            {
+                chartJobs.BringToFront();
+                dataGridViewJobs.SendToBack();
+            }
+        }
+
+
+
+
 
 
     }

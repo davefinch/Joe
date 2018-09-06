@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridViewJobs = new System.Windows.Forms.DataGridView();
             this.JobId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +58,8 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonClearJobDetails = new System.Windows.Forms.Button();
             this.groupBoxEntry = new System.Windows.Forms.GroupBox();
+            this.radioButtonGraph = new System.Windows.Forms.RadioButton();
+            this.radioButtonData = new System.Windows.Forms.RadioButton();
             this.buttonBackup = new System.Windows.Forms.Button();
             this.textBoxJobId = new System.Windows.Forms.TextBox();
             this.buttonRefresh = new System.Windows.Forms.Button();
@@ -79,18 +84,20 @@
             this.labelLast90Days = new System.Windows.Forms.Label();
             this.labelLast60Days = new System.Windows.Forms.Label();
             this.labelLast30Days = new System.Windows.Forms.Label();
+            this.groupBoxJobHistory = new System.Windows.Forms.GroupBox();
+            this.labelJobCount = new System.Windows.Forms.Label();
             this.jobBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jODataSet = new Russell.JODataSet();
             this.jobTableAdapter = new Russell.JODataSetTableAdapters.JobTableAdapter();
-            this.groupBoxJobHistory = new System.Windows.Forms.GroupBox();
-            this.labelJobCount = new System.Windows.Forms.Label();
+            this.chartJobs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).BeginInit();
             this.groupBoxEntry.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBoxJobHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).BeginInit();
-            this.groupBoxJobHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewJobs
@@ -108,10 +115,10 @@
             this.EndJob,
             this.TotalPayment,
             this.PaymentReceived});
-            this.dataGridViewJobs.Location = new System.Drawing.Point(16, 30);
+            this.dataGridViewJobs.Location = new System.Drawing.Point(16, 48);
             this.dataGridViewJobs.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewJobs.Name = "dataGridViewJobs";
-            this.dataGridViewJobs.Size = new System.Drawing.Size(1148, 417);
+            this.dataGridViewJobs.Size = new System.Drawing.Size(1148, 398);
             this.dataGridViewJobs.TabIndex = 0;
             // 
             // JobId
@@ -315,6 +322,8 @@
             // 
             // groupBoxEntry
             // 
+            this.groupBoxEntry.Controls.Add(this.radioButtonGraph);
+            this.groupBoxEntry.Controls.Add(this.radioButtonData);
             this.groupBoxEntry.Controls.Add(this.buttonBackup);
             this.groupBoxEntry.Controls.Add(this.textBoxJobId);
             this.groupBoxEntry.Controls.Add(this.buttonRefresh);
@@ -340,6 +349,29 @@
             this.groupBoxEntry.TabStop = false;
             this.groupBoxEntry.Text = "Job Details";
             // 
+            // radioButtonGraph
+            // 
+            this.radioButtonGraph.AutoSize = true;
+            this.radioButtonGraph.Location = new System.Drawing.Point(1071, 13);
+            this.radioButtonGraph.Name = "radioButtonGraph";
+            this.radioButtonGraph.Size = new System.Drawing.Size(69, 21);
+            this.radioButtonGraph.TabIndex = 26;
+            this.radioButtonGraph.Text = "Graph";
+            this.radioButtonGraph.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonData
+            // 
+            this.radioButtonData.AutoSize = true;
+            this.radioButtonData.Checked = true;
+            this.radioButtonData.Location = new System.Drawing.Point(1006, 13);
+            this.radioButtonData.Name = "radioButtonData";
+            this.radioButtonData.Size = new System.Drawing.Size(59, 21);
+            this.radioButtonData.TabIndex = 25;
+            this.radioButtonData.TabStop = true;
+            this.radioButtonData.Text = "Data";
+            this.radioButtonData.UseVisualStyleBackColor = true;
+            this.radioButtonData.CheckedChanged += new System.EventHandler(this.radioButtonData_CheckedChanged);
+            // 
             // buttonBackup
             // 
             this.buttonBackup.Enabled = false;
@@ -362,7 +394,7 @@
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(1040, 23);
+            this.buttonRefresh.Location = new System.Drawing.Point(1040, 63);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(100, 28);
@@ -567,20 +599,6 @@
             this.labelLast30Days.TabIndex = 0;
             this.labelLast30Days.Text = "Last 30 Days:";
             // 
-            // jobBindingSource
-            // 
-            this.jobBindingSource.DataMember = "Job";
-            this.jobBindingSource.DataSource = this.jODataSet;
-            // 
-            // jODataSet
-            // 
-            this.jODataSet.DataSetName = "JODataSet";
-            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jobTableAdapter
-            // 
-            this.jobTableAdapter.ClearBeforeFill = true;
-            // 
             // groupBoxJobHistory
             // 
             this.groupBoxJobHistory.Controls.Add(this.labelJobCount);
@@ -600,6 +618,36 @@
             this.labelJobCount.TabIndex = 0;
             this.labelJobCount.Text = ".";
             // 
+            // jobBindingSource
+            // 
+            this.jobBindingSource.DataMember = "Job";
+            this.jobBindingSource.DataSource = this.jODataSet;
+            // 
+            // jODataSet
+            // 
+            this.jODataSet.DataSetName = "JODataSet";
+            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // jobTableAdapter
+            // 
+            this.jobTableAdapter.ClearBeforeFill = true;
+            // 
+            // chartJobs
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartJobs.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartJobs.Legends.Add(legend1);
+            this.chartJobs.Location = new System.Drawing.Point(16, 48);
+            this.chartJobs.Name = "chartJobs";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartJobs.Series.Add(series1);
+            this.chartJobs.Size = new System.Drawing.Size(1148, 398);
+            this.chartJobs.TabIndex = 1;
+            this.chartJobs.Text = "Job Visualisation";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -610,6 +658,7 @@
             this.Controls.Add(this.groupBoxEntry);
             this.Controls.Add(this.dataGridViewJobs);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.chartJobs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
@@ -622,10 +671,11 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
             this.groupBoxJobHistory.ResumeLayout(false);
             this.groupBoxJobHistory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,6 +736,9 @@
         private System.Windows.Forms.Button buttonBackup;
         private System.Windows.Forms.GroupBox groupBoxJobHistory;
         private System.Windows.Forms.Label labelJobCount;
+        private System.Windows.Forms.RadioButton radioButtonGraph;
+        private System.Windows.Forms.RadioButton radioButtonData;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartJobs;
     }
 }
 
