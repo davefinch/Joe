@@ -740,11 +740,45 @@ namespace Russell
         }
 
 
+        public List<DataFinance> SQLGetChartData()
+        {
+            using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+            {
+                conn.Open();
 
+                using (SqlCommand comm = new SqlCommand())
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(";WITH alltransactions");
+                    sb.AppendLine("AS");
+                    sb.AppendLine("(");
+                    sb.AppendLine("    SELECT      MIN(StartJob) AS continuousdate");
+                    sb.AppendLine("            ,   MAX(StartJob) AS maximumdate");
+                    sb.AppendLine("    FROM        Job");
+                    sb.AppendLine("    WHERE           StartJob > DATEADD(year, -1, GETDATE())");
+                    sb.AppendLine("    UNION ALL ");
+                    sb.AppendLine("    SELECT      DATEADD(MONTH, 1, continuousdate) AS continuousdate");
+                    sb.AppendLine("            ,   maximumdate");
+                    sb.AppendLine("    FROM        alltransactions");
+                    sb.AppendLine("    WHERE       DATEADD(MONTH, 1, continuousdate) <= maximumdate");
+                    sb.AppendLine(")");
+                    sb.AppendLine("SELECT          YEAR(at.continuousdate)     AS [Year]");
+                    sb.AppendLine("            ,   MONTH(at.continuousdate)    AS [Month]");
+                    sb.AppendLine("			,   DATENAME(MONTH, at.continuousdate) + ' ' + CONVERT(CHAR(4), YEAR(at.continuousdate)) AS PeriodName");
+                    sb.AppendLine("            ,   COUNT(j2.StartJob)        AS [Count]");
+                    sb.AppendLine("FROM            alltransactions at");
+                    sb.AppendLine("LEFT OUTER JOIN Job j2");
+                    sb.AppendLine("ON              YEAR(at.continuousdate)     = YEAR(j2.StartJob)");
+                    sb.AppendLine("AND             MONTH(at.continuousdate)    = MONTH(j2.StartJob)");
+                    sb.AppendLine("GROUP BY        YEAR(at.continuousdate)");
+                    sb.AppendLine("            ,   MONTH(at.continuousdate)");
+                    sb.AppendLine("			,   DATENAME(MONTH, at.continuousdate) + ' ' + CONVERT(CHAR(4), YEAR(at.continuousdate))");
+                    sb.AppendLine("ORDER BY        [Year]");
+                    sb.AppendLine("            ,   [Month] DESC;");
+                }
 
-
-
-
+            }
+        }
 
 
     }

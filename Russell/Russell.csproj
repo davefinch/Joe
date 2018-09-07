@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="DataAgency.cs" />
+    <Compile Include="DataChart.cs" />
     <Compile Include="DataFinance.cs" />
     <Compile Include="DataJob.cs" />
     <Compile Include="Form1.cs">

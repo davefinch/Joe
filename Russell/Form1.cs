@@ -63,11 +63,18 @@ namespace Russell
 
             this.chartJobs.Series.Add(series1);
 
-            for (int i = 0; i < 100; i++)
-            {
-                series1.Points.AddXY(i, f(i));
-            }
-            chartJobs.Invalidate();
+
+            // Initialize an array of doubles.
+            double[] array = { 2.8, 4.4, 6.5, 8.3, 3.6, 5.6, 7.3, 9.2, 1.0 };
+
+            // Bind the double array to the Y axis points of the data series.
+            chartJobs.Series["Series1"].Points.DataBindY(array);
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    series1.Points.AddXY(i, f(i));
+            //}
+            //chartJobs.Invalidate();
         }
 
         private double f(int i)
