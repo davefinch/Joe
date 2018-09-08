@@ -35,11 +35,13 @@
             this.labelDeafaultGraphStyle = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveClose = new System.Windows.Forms.Button();
+            this.buttonAddAgency = new System.Windows.Forms.Button();
             this.groupBoxGeneral.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.buttonAddAgency);
             this.groupBoxGeneral.Controls.Add(this.labelDeafaultGraphStyle);
             this.groupBoxGeneral.Controls.Add(this.comboBox2);
             this.groupBoxGeneral.Controls.Add(this.comboBox1);
@@ -54,7 +56,7 @@
             // labelDefaultAgency
             // 
             this.labelDefaultAgency.AutoSize = true;
-            this.labelDefaultAgency.Location = new System.Drawing.Point(56, 38);
+            this.labelDefaultAgency.Location = new System.Drawing.Point(16, 40);
             this.labelDefaultAgency.Name = "labelDefaultAgency";
             this.labelDefaultAgency.Size = new System.Drawing.Size(83, 13);
             this.labelDefaultAgency.TabIndex = 0;
@@ -63,7 +65,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(188, 38);
+            this.comboBox1.Location = new System.Drawing.Point(148, 40);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(183, 21);
             this.comboBox1.TabIndex = 1;
@@ -71,7 +73,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(188, 87);
+            this.comboBox2.Location = new System.Drawing.Point(148, 89);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(183, 21);
             this.comboBox2.TabIndex = 2;
@@ -79,7 +81,7 @@
             // labelDeafaultGraphStyle
             // 
             this.labelDeafaultGraphStyle.AutoSize = true;
-            this.labelDeafaultGraphStyle.Location = new System.Drawing.Point(59, 87);
+            this.labelDeafaultGraphStyle.Location = new System.Drawing.Point(19, 89);
             this.labelDeafaultGraphStyle.Name = "labelDeafaultGraphStyle";
             this.labelDeafaultGraphStyle.Size = new System.Drawing.Size(102, 13);
             this.labelDeafaultGraphStyle.TabIndex = 3;
@@ -103,6 +105,15 @@
             this.buttonSaveClose.Text = "Save & Close";
             this.buttonSaveClose.UseVisualStyleBackColor = true;
             this.buttonSaveClose.Click += new System.EventHandler(this.buttonSaveClose_Click);
+            // 
+            // buttonAddAgency
+            // 
+            this.buttonAddAgency.Location = new System.Drawing.Point(364, 40);
+            this.buttonAddAgency.Name = "buttonAddAgency";
+            this.buttonAddAgency.Size = new System.Drawing.Size(53, 23);
+            this.buttonAddAgency.TabIndex = 4;
+            this.buttonAddAgency.Text = "New";
+            this.buttonAddAgency.UseVisualStyleBackColor = true;
             // 
             // FormOptions
             // 
@@ -130,5 +141,6 @@
         private System.Windows.Forms.Label labelDefaultAgency;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSaveClose;
+        private System.Windows.Forms.Button buttonAddAgency;
     }
 }
