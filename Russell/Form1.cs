@@ -48,24 +48,25 @@ namespace Russell
 
                 // Create and add the chart data
                 chartJobs.Series.Clear();
-                var series2 = new System.Windows.Forms.DataVisualization.Charting.Series
-                {
-                    Name = "Payment",
-                    Color = System.Drawing.Color.Green,
-                    IsVisibleInLegend = true,
-                    IsXValueIndexed = true,
-                    ChartType = SeriesChartType.StackedArea
-                };
+
+                //var series2 = new System.Windows.Forms.DataVisualization.Charting.Series
+                //{
+                //    Name = "Payment",
+                //    Color = System.Drawing.Color.Green,
+                //    IsVisibleInLegend = true,
+                //    IsXValueIndexed = true,
+                //    ChartType = SeriesChartType.StackedArea
+                //};
                 var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
                 {
                     Name = "Jobs",
                     Color = System.Drawing.Color.Blue,
                     IsVisibleInLegend = true,
                     IsXValueIndexed = true,
-                    ChartType = SeriesChartType.StackedArea
-                };
+                    ChartType = SeriesChartType.StackedBar
+            };
 
-                this.chartJobs.Series.Add(series2);
+                //this.chartJobs.Series.Add(series2);
                 this.chartJobs.Series.Add(series1);
 
                 List<DataChart> listDataChart = new List<DataChart>();
@@ -73,9 +74,10 @@ namespace Russell
 
                 foreach (DataChart item in listDataChart)
                 {
-                    series2.Points.AddY(item.TotalAmount);
+                    //series2.Points.AddY(item.TotalAmount);
                     series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
                 }
+
                 chartJobs.Invalidate();
             }
 
@@ -84,18 +86,6 @@ namespace Russell
             radioButtonGraph.CheckedChanged += new EventHandler(radioButtonData_CheckedChanged);
 
         }
-
-        private double f(int i)
-        {
-            var f1 = 59894 - (8128 * i) + (262 * i * i) - (1.6 * i * i * i);
-            return f1;
-        }
-
-
-
-
-
-
 
         private void dgv_DeleteSelectedRow()
         {
@@ -578,11 +568,25 @@ namespace Russell
             }
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This is the options window
+            FormOptions optionsForm = new FormOptions();
+            optionsForm.Show();
+        }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
 
-
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Really Quit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
 
