@@ -30,8 +30,8 @@
         {
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
             this.labelDefaultAgency = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDefaultAgency = new System.Windows.Forms.ComboBox();
+            this.comboBoxDefaultGraphStyle = new System.Windows.Forms.ComboBox();
             this.labelDeafaultGraphStyle = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveClose = new System.Windows.Forms.Button();
@@ -43,8 +43,8 @@
             // 
             this.groupBoxGeneral.Controls.Add(this.buttonAddAgency);
             this.groupBoxGeneral.Controls.Add(this.labelDeafaultGraphStyle);
-            this.groupBoxGeneral.Controls.Add(this.comboBox2);
-            this.groupBoxGeneral.Controls.Add(this.comboBox1);
+            this.groupBoxGeneral.Controls.Add(this.comboBoxDefaultGraphStyle);
+            this.groupBoxGeneral.Controls.Add(this.comboBoxDefaultAgency);
             this.groupBoxGeneral.Controls.Add(this.labelDefaultAgency);
             this.groupBoxGeneral.Location = new System.Drawing.Point(13, 13);
             this.groupBoxGeneral.Name = "groupBoxGeneral";
@@ -62,21 +62,23 @@
             this.labelDefaultAgency.TabIndex = 0;
             this.labelDefaultAgency.Text = "Default Agency:";
             // 
-            // comboBox1
+            // comboBoxDefaultAgency
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(148, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(183, 21);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxDefaultAgency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDefaultAgency.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.comboBoxDefaultAgency.FormattingEnabled = true;
+            this.comboBoxDefaultAgency.Location = new System.Drawing.Point(148, 40);
+            this.comboBoxDefaultAgency.Name = "comboBoxDefaultAgency";
+            this.comboBoxDefaultAgency.Size = new System.Drawing.Size(183, 21);
+            this.comboBoxDefaultAgency.TabIndex = 1;
             // 
-            // comboBox2
+            // comboBoxDefaultGraphStyle
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(148, 89);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(183, 21);
-            this.comboBox2.TabIndex = 2;
+            this.comboBoxDefaultGraphStyle.FormattingEnabled = true;
+            this.comboBoxDefaultGraphStyle.Location = new System.Drawing.Point(148, 89);
+            this.comboBoxDefaultGraphStyle.Name = "comboBoxDefaultGraphStyle";
+            this.comboBoxDefaultGraphStyle.Size = new System.Drawing.Size(183, 21);
+            this.comboBoxDefaultGraphStyle.TabIndex = 2;
             // 
             // labelDeafaultGraphStyle
             // 
@@ -95,6 +97,7 @@
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click_1);
             // 
             // buttonSaveClose
             // 
@@ -136,8 +139,8 @@
 
         private System.Windows.Forms.GroupBox groupBoxGeneral;
         private System.Windows.Forms.Label labelDeafaultGraphStyle;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDefaultGraphStyle;
+        private System.Windows.Forms.ComboBox comboBoxDefaultAgency;
         private System.Windows.Forms.Label labelDefaultAgency;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSaveClose;

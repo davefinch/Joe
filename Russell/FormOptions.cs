@@ -22,8 +22,23 @@ namespace Russell
         {
 
             // Choose Default Agency
-            // Choose Graph Type
-            // Choose...
+            // Load up the Agency Combo Box
+            using (Sql sql = new Sql())
+            {
+                Dictionary<string, int> listAgency = new Dictionary<string, int>();
+
+                // Function determined by the type of db we are connecting to
+                if (Constants.DBMS == "MSSQL") { listAgency = sql.SQLGetAgencies(); } else { listAgency = sql.OLEGetAgencies(); }
+
+                comboBoxDefaultAgency.DataSource = listAgency.ToList();
+                comboBoxDefaultAgency.DisplayMember = "Key";
+                comboBoxDefaultAgency.ValueMember = "Value";
+
+            }
+
+
+                // Choose Graph Type
+                // Choose...
         }
 
         private void buttonSaveClose_Click(object sender, EventArgs e)
@@ -31,6 +46,12 @@ namespace Russell
             // Save Settings
 
 
+            // Close window
+            this.Close();
+        }
+
+        private void buttonCancel_Click_1(object sender, EventArgs e)
+        {
             // Close window
             this.Close();
         }
