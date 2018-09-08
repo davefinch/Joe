@@ -46,7 +46,7 @@ namespace Russell
                 comboBoxAgency.DisplayMember = "Key";
                 comboBoxAgency.ValueMember = "Value";
 
-                // Add the chart data
+                // Create and add the chart data
                 chartJobs.Series.Clear();
                 var series2 = new System.Windows.Forms.DataVisualization.Charting.Series
                 {
@@ -71,18 +71,10 @@ namespace Russell
                 List<DataChart> listDataChart = new List<DataChart>();
                 listDataChart = sql.SQLGetChartData();
 
-                int totalJobs = 0;
-                string jobPeriod = "";
-                double totalAmount = 0;
-
                 foreach (DataChart item in listDataChart)
                 {
-                    totalJobs = item.TotalJobs;
-                    jobPeriod = item.JobPeriod;
-                    totalAmount = item.TotalAmount;
-                    series2.Points.AddY(totalAmount);
-                    series1.Points.AddXY(jobPeriod, totalJobs);
-
+                    series2.Points.AddY(item.TotalAmount);
+                    series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
                 }
                 chartJobs.Invalidate();
             }
