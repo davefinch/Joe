@@ -765,7 +765,7 @@ namespace Russell
                     sb.AppendLine("SELECT          YEAR(at.continuousdate)     AS [Year]");
                     sb.AppendLine("            ,   MONTH(at.continuousdate)    AS [Month]");
                     sb.AppendLine("			,   DATENAME(MONTH, at.continuousdate) + ' ' + CONVERT(CHAR(4), YEAR(at.continuousdate)) AS PeriodName");
-                    sb.AppendLine("            ,   COUNT(j2.StartJob)        AS [Count]");
+                    sb.AppendLine("            ,   COUNT(j2.StartJob)        AS [Count], SUM(j2.TotalPayment) AS [TotalAmount]");
                     sb.AppendLine("FROM            alltransactions at");
                     sb.AppendLine("LEFT OUTER JOIN Job j2");
                     sb.AppendLine("ON              YEAR(at.continuousdate)     = YEAR(j2.StartJob)");
@@ -791,6 +791,7 @@ namespace Russell
 
                             dc.JobPeriod = reader["PeriodName"].ToString();
                             dc.TotalJobs = Convert.ToInt32(reader["Count"]);
+                            dc.TotalAmount = Convert.ToDouble(reader["TotalAmount"]);
 
                             // Add to the DataRecord
                             listAmounts.Add(dc);

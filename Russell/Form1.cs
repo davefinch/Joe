@@ -48,15 +48,24 @@ namespace Russell
 
                 // Add the chart data
                 chartJobs.Series.Clear();
+                var series2 = new System.Windows.Forms.DataVisualization.Charting.Series
+                {
+                    Name = "Payment",
+                    Color = System.Drawing.Color.Green,
+                    IsVisibleInLegend = true,
+                    IsXValueIndexed = true,
+                    ChartType = SeriesChartType.StackedArea
+                };
                 var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
                 {
-                    Name = "Series1",
-                    Color = System.Drawing.Color.Green,
-                    IsVisibleInLegend = false,
+                    Name = "Jobs",
+                    Color = System.Drawing.Color.Blue,
+                    IsVisibleInLegend = true,
                     IsXValueIndexed = true,
                     ChartType = SeriesChartType.StackedArea
                 };
 
+                this.chartJobs.Series.Add(series2);
                 this.chartJobs.Series.Add(series1);
 
                 List<DataChart> listDataChart = new List<DataChart>();
@@ -64,12 +73,16 @@ namespace Russell
 
                 int totalJobs = 0;
                 string jobPeriod = "";
+                double totalAmount = 0;
 
                 foreach (DataChart item in listDataChart)
                 {
                     totalJobs = item.TotalJobs;
                     jobPeriod = item.JobPeriod;
+                    totalAmount = item.TotalAmount;
+                    series2.Points.AddY(totalAmount);
                     series1.Points.AddXY(jobPeriod, totalJobs);
+
                 }
                 chartJobs.Invalidate();
             }
