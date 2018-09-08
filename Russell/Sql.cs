@@ -740,7 +740,7 @@ namespace Russell
         }
 
 
-        public List<DataFinance> SQLGetChartData()
+        public List<DataChart> SQLGetChartData()
         {
             using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
             {
@@ -760,7 +760,7 @@ namespace Russell
                     sb.AppendLine("    SELECT      DATEADD(MONTH, 1, continuousdate) AS continuousdate");
                     sb.AppendLine("            ,   maximumdate");
                     sb.AppendLine("    FROM        alltransactions");
-                    sb.AppendLine("    WHERE       DATEADD(MONTH, 1, continuousdate) <= maximumdate");
+                    sb.AppendLine("    WHERE       DATEADD(MONTH, 1, continuousdate) <= DATEADD(MONTH, 1, maximumdate)");
                     sb.AppendLine(")");
                     sb.AppendLine("SELECT          YEAR(at.continuousdate)     AS [Year]");
                     sb.AppendLine("            ,   MONTH(at.continuousdate)    AS [Month]");
@@ -774,7 +774,30 @@ namespace Russell
                     sb.AppendLine("            ,   MONTH(at.continuousdate)");
                     sb.AppendLine("			,   DATENAME(MONTH, at.continuousdate) + ' ' + CONVERT(CHAR(4), YEAR(at.continuousdate))");
                     sb.AppendLine("ORDER BY        [Year]");
-                    sb.AppendLine("            ,   [Month] DESC;");
+                    sb.AppendLine("            ,   [Month];");
+
+                    comm.CommandText = sb.ToString();
+                    comm.Connection = conn;
+
+                    comm.ExecuteScalar().ToString();
+
+                    List<DataChart> listAmounts = new List<DataChart>();
+
+                    using (SqlDataReader reader = comm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DataChart dc = new DataChart();
+
+                            dc.JobPeriod = reader["PeriodName"].ToString();
+                            dc.TotalJobs = Convert.ToInt32(reader["Count"]);
+
+                            // Add to the DataRecord
+                            listAmounts.Add(dc);
+                        }
+                    }
+
+                    return listAmounts;
                 }
 
             }

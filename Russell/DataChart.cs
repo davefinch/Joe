@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Russell
 {
-    class DataChart
+    public class DataChart
     {
         public int TotalJobs { get; set; }
         public string JobPeriod { get; set; }
+        public double TotalAmount { get; set; }
 
     }
 }

@@ -45,36 +45,39 @@ namespace Russell
                 comboBoxAgency.DataSource = listAgency.ToList();
                 comboBoxAgency.DisplayMember = "Key";
                 comboBoxAgency.ValueMember = "Value";
+
+                // Add the chart data
+                chartJobs.Series.Clear();
+                var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                {
+                    Name = "Series1",
+                    Color = System.Drawing.Color.Green,
+                    IsVisibleInLegend = false,
+                    IsXValueIndexed = true,
+                    ChartType = SeriesChartType.StackedArea
+                };
+
+                this.chartJobs.Series.Add(series1);
+
+                List<DataChart> listDataChart = new List<DataChart>();
+                listDataChart = sql.SQLGetChartData();
+
+                int totalJobs = 0;
+                string jobPeriod = "";
+
+                foreach (DataChart item in listDataChart)
+                {
+                    totalJobs = item.TotalJobs;
+                    jobPeriod = item.JobPeriod;
+                    series1.Points.AddXY(jobPeriod, totalJobs);
+                }
+                chartJobs.Invalidate();
             }
 
             // Set up radio button event handlers
             radioButtonData.CheckedChanged += new EventHandler(radioButtonData_CheckedChanged);
             radioButtonGraph.CheckedChanged += new EventHandler(radioButtonData_CheckedChanged);
 
-            chartJobs.Series.Clear();
-            var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
-            {
-                Name = "Series1",
-                Color = System.Drawing.Color.Green,
-                IsVisibleInLegend = false,
-                IsXValueIndexed = true,
-                ChartType = SeriesChartType.Line
-            };
-
-            this.chartJobs.Series.Add(series1);
-
-
-            // Initialize an array of doubles.
-            double[] array = { 2.8, 4.4, 6.5, 8.3, 3.6, 5.6, 7.3, 9.2, 1.0 };
-
-            // Bind the double array to the Y axis points of the data series.
-            chartJobs.Series["Series1"].Points.DataBindY(array);
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    series1.Points.AddXY(i, f(i));
-            //}
-            //chartJobs.Invalidate();
         }
 
         private double f(int i)
