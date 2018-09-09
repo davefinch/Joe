@@ -28,8 +28,11 @@ namespace Russell
         {
             StartupFolder = ConfigurationManager.AppSettings["StartupFolder"];
 
-           //ConnectionString = ConfigurationManager.ConnectionStrings["JO"].ConnectionString;
-           ConnectionString = ConfigurationManager.ConnectionStrings["Joe"].ConnectionString;
+            //ConnectionString = ConfigurationManager.ConnectionStrings["JO"].ConnectionString;
+            
+            // ********* Cannot store password in GitHub as MS picks it up and flags it as a security risk **********
+            //ConnectionString = ConfigurationManager.ConnectionStrings["Joe"].ConnectionString;
+            ConnectionString = "Data Source=logsysdev.database.windows.net;Initial Catalog=Joe;user id=finchd;password=LuckyStrike123";
 
             UserFullName = UserPrincipal.Current.DisplayName;
 
