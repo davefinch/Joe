@@ -116,9 +116,10 @@
             this.EndJob,
             this.TotalPayment,
             this.PaymentReceived});
-            this.dataGridViewJobs.Location = new System.Drawing.Point(11, 40);
+            this.dataGridViewJobs.Location = new System.Drawing.Point(15, 49);
+            this.dataGridViewJobs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewJobs.Name = "dataGridViewJobs";
-            this.dataGridViewJobs.Size = new System.Drawing.Size(861, 323);
+            this.dataGridViewJobs.Size = new System.Drawing.Size(1148, 398);
             this.dataGridViewJobs.TabIndex = 0;
             // 
             // JobId
@@ -192,60 +193,67 @@
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(321, 32);
+            this.labelStartDate.Location = new System.Drawing.Point(428, 39);
+            this.labelStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStartDate.Name = "labelStartDate";
-            this.labelStartDate.Size = new System.Drawing.Size(55, 13);
+            this.labelStartDate.Size = new System.Drawing.Size(72, 17);
             this.labelStartDate.TabIndex = 5;
             this.labelStartDate.Text = "StartDate:";
             // 
             // dateTimePickerStartJob
             // 
-            this.dateTimePickerStartJob.Location = new System.Drawing.Point(382, 32);
+            this.dateTimePickerStartJob.Location = new System.Drawing.Point(509, 39);
+            this.dateTimePickerStartJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePickerStartJob.Name = "dateTimePickerStartJob";
-            this.dateTimePickerStartJob.Size = new System.Drawing.Size(134, 20);
+            this.dateTimePickerStartJob.Size = new System.Drawing.Size(177, 22);
             this.dateTimePickerStartJob.TabIndex = 6;
             this.dateTimePickerStartJob.ValueChanged += new System.EventHandler(this.dateTimePickerStartJob_ValueChanged_1);
             // 
             // labelAgency
             // 
             this.labelAgency.AutoSize = true;
-            this.labelAgency.Location = new System.Drawing.Point(15, 31);
+            this.labelAgency.Location = new System.Drawing.Point(20, 38);
+            this.labelAgency.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAgency.Name = "labelAgency";
-            this.labelAgency.Size = new System.Drawing.Size(46, 13);
+            this.labelAgency.Size = new System.Drawing.Size(59, 17);
             this.labelAgency.TabIndex = 3;
             this.labelAgency.Text = "Agency:";
             // 
             // labelEndDate
             // 
             this.labelEndDate.AutoSize = true;
-            this.labelEndDate.Location = new System.Drawing.Point(324, 73);
+            this.labelEndDate.Location = new System.Drawing.Point(432, 90);
+            this.labelEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEndDate.Name = "labelEndDate";
-            this.labelEndDate.Size = new System.Drawing.Size(55, 13);
+            this.labelEndDate.Size = new System.Drawing.Size(71, 17);
             this.labelEndDate.TabIndex = 7;
             this.labelEndDate.Text = "End Date:";
             // 
             // textBoxjobDetails
             // 
-            this.textBoxjobDetails.Location = new System.Drawing.Point(80, 72);
+            this.textBoxjobDetails.Location = new System.Drawing.Point(107, 89);
+            this.textBoxjobDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxjobDetails.Multiline = true;
             this.textBoxjobDetails.Name = "textBoxjobDetails";
             this.textBoxjobDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxjobDetails.Size = new System.Drawing.Size(227, 53);
+            this.textBoxjobDetails.Size = new System.Drawing.Size(301, 64);
             this.textBoxjobDetails.TabIndex = 2;
             // 
             // dateTimePickerEndJob
             // 
-            this.dateTimePickerEndJob.Location = new System.Drawing.Point(382, 73);
+            this.dateTimePickerEndJob.Location = new System.Drawing.Point(509, 90);
+            this.dateTimePickerEndJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePickerEndJob.Name = "dateTimePickerEndJob";
-            this.dateTimePickerEndJob.Size = new System.Drawing.Size(134, 20);
+            this.dateTimePickerEndJob.Size = new System.Drawing.Size(177, 22);
             this.dateTimePickerEndJob.TabIndex = 8;
             // 
             // labelJobDetails
             // 
             this.labelJobDetails.AutoSize = true;
-            this.labelJobDetails.Location = new System.Drawing.Point(12, 72);
+            this.labelJobDetails.Location = new System.Drawing.Point(16, 89);
+            this.labelJobDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelJobDetails.Name = "labelJobDetails";
-            this.labelJobDetails.Size = new System.Drawing.Size(62, 13);
+            this.labelJobDetails.Size = new System.Drawing.Size(82, 17);
             this.labelJobDetails.TabIndex = 1;
             this.labelJobDetails.Text = "Job Details:";
             // 
@@ -253,25 +261,28 @@
             // 
             this.comboBoxAgency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAgency.FormattingEnabled = true;
-            this.comboBoxAgency.Location = new System.Drawing.Point(80, 31);
+            this.comboBoxAgency.Location = new System.Drawing.Point(107, 38);
+            this.comboBoxAgency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxAgency.Name = "comboBoxAgency";
-            this.comboBoxAgency.Size = new System.Drawing.Size(227, 21);
+            this.comboBoxAgency.Size = new System.Drawing.Size(301, 24);
             this.comboBoxAgency.TabIndex = 4;
             // 
             // labelTotalPayment
             // 
-            this.labelTotalPayment.Location = new System.Drawing.Point(563, 32);
+            this.labelTotalPayment.Location = new System.Drawing.Point(751, 39);
+            this.labelTotalPayment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotalPayment.Name = "labelTotalPayment";
-            this.labelTotalPayment.Size = new System.Drawing.Size(87, 20);
+            this.labelTotalPayment.Size = new System.Drawing.Size(116, 25);
             this.labelTotalPayment.TabIndex = 14;
             this.labelTotalPayment.Text = "Total Payment:";
             this.labelTotalPayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBoxTotalPayment
             // 
-            this.textBoxTotalPayment.Location = new System.Drawing.Point(656, 33);
+            this.textBoxTotalPayment.Location = new System.Drawing.Point(875, 41);
+            this.textBoxTotalPayment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxTotalPayment.Name = "textBoxTotalPayment";
-            this.textBoxTotalPayment.Size = new System.Drawing.Size(57, 20);
+            this.textBoxTotalPayment.Size = new System.Drawing.Size(75, 22);
             this.textBoxTotalPayment.TabIndex = 15;
             this.textBoxTotalPayment.Text = "0";
             this.textBoxTotalPayment.TextChanged += new System.EventHandler(this.textBoxTotalPayment_TextChanged);
@@ -280,18 +291,20 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(551, 76);
+            this.checkBox1.Location = new System.Drawing.Point(735, 94);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(119, 17);
+            this.checkBox1.Size = new System.Drawing.Size(152, 21);
             this.checkBox1.TabIndex = 19;
             this.checkBox1.Text = "Payment Received:";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(783, 102);
+            this.buttonSave.Location = new System.Drawing.Point(1044, 126);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(72, 23);
+            this.buttonSave.Size = new System.Drawing.Size(96, 28);
             this.buttonSave.TabIndex = 20;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -299,9 +312,10 @@
             // 
             // buttonClearJobDetails
             // 
-            this.buttonClearJobDetails.Location = new System.Drawing.Point(683, 102);
+            this.buttonClearJobDetails.Location = new System.Drawing.Point(911, 126);
+            this.buttonClearJobDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonClearJobDetails.Name = "buttonClearJobDetails";
-            this.buttonClearJobDetails.Size = new System.Drawing.Size(94, 23);
+            this.buttonClearJobDetails.Size = new System.Drawing.Size(125, 28);
             this.buttonClearJobDetails.TabIndex = 21;
             this.buttonClearJobDetails.Text = "Clear Job Details";
             this.buttonClearJobDetails.UseVisualStyleBackColor = true;
@@ -327,9 +341,11 @@
             this.groupBoxEntry.Controls.Add(this.labelAgency);
             this.groupBoxEntry.Controls.Add(this.dateTimePickerStartJob);
             this.groupBoxEntry.Controls.Add(this.labelStartDate);
-            this.groupBoxEntry.Location = new System.Drawing.Point(12, 369);
+            this.groupBoxEntry.Location = new System.Drawing.Point(16, 454);
+            this.groupBoxEntry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxEntry.Name = "groupBoxEntry";
-            this.groupBoxEntry.Size = new System.Drawing.Size(861, 134);
+            this.groupBoxEntry.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxEntry.Size = new System.Drawing.Size(1148, 165);
             this.groupBoxEntry.TabIndex = 10;
             this.groupBoxEntry.TabStop = false;
             this.groupBoxEntry.Text = "Job Details";
@@ -337,10 +353,10 @@
             // radioButtonGraph
             // 
             this.radioButtonGraph.AutoSize = true;
-            this.radioButtonGraph.Location = new System.Drawing.Point(803, 11);
-            this.radioButtonGraph.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonGraph.Location = new System.Drawing.Point(1071, 14);
+            this.radioButtonGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButtonGraph.Name = "radioButtonGraph";
-            this.radioButtonGraph.Size = new System.Drawing.Size(54, 17);
+            this.radioButtonGraph.Size = new System.Drawing.Size(69, 21);
             this.radioButtonGraph.TabIndex = 26;
             this.radioButtonGraph.Text = "Graph";
             this.radioButtonGraph.UseVisualStyleBackColor = true;
@@ -349,10 +365,10 @@
             // 
             this.radioButtonData.AutoSize = true;
             this.radioButtonData.Checked = true;
-            this.radioButtonData.Location = new System.Drawing.Point(754, 11);
-            this.radioButtonData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonData.Location = new System.Drawing.Point(1005, 14);
+            this.radioButtonData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButtonData.Name = "radioButtonData";
-            this.radioButtonData.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonData.Size = new System.Drawing.Size(59, 21);
             this.radioButtonData.TabIndex = 25;
             this.radioButtonData.TabStop = true;
             this.radioButtonData.Text = "Data";
@@ -362,10 +378,10 @@
             // buttonBackup
             // 
             this.buttonBackup.Enabled = false;
-            this.buttonBackup.Location = new System.Drawing.Point(609, 102);
-            this.buttonBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonBackup.Location = new System.Drawing.Point(812, 126);
+            this.buttonBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBackup.Name = "buttonBackup";
-            this.buttonBackup.Size = new System.Drawing.Size(56, 23);
+            this.buttonBackup.Size = new System.Drawing.Size(75, 28);
             this.buttonBackup.TabIndex = 24;
             this.buttonBackup.Text = "Backup";
             this.buttonBackup.UseVisualStyleBackColor = true;
@@ -373,17 +389,19 @@
             // 
             // textBoxJobId
             // 
-            this.textBoxJobId.Location = new System.Drawing.Point(327, 104);
+            this.textBoxJobId.Location = new System.Drawing.Point(436, 128);
+            this.textBoxJobId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxJobId.Name = "textBoxJobId";
-            this.textBoxJobId.Size = new System.Drawing.Size(100, 20);
+            this.textBoxJobId.Size = new System.Drawing.Size(132, 22);
             this.textBoxJobId.TabIndex = 23;
             this.textBoxJobId.Visible = false;
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(780, 51);
+            this.buttonRefresh.Location = new System.Drawing.Point(1040, 63);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefresh.Size = new System.Drawing.Size(100, 28);
             this.buttonRefresh.TabIndex = 22;
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = true;
@@ -398,7 +416,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1179, 28);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -412,36 +431,36 @@
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.newToolStripMenuItem.Text = "&New Agency";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(164, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.deleteToolStripMenuItem.Text = "Options";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(164, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -451,19 +470,19 @@
             this.insertToolStripMenuItem,
             this.deleteToolStripMenuItem1});
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem1.Text = "E&dit";
             // 
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.insertToolStripMenuItem.Text = "Insert";
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(128, 26);
             this.deleteToolStripMenuItem1.Text = "Delete";
             // 
             // helpToolStripMenuItem
@@ -471,14 +490,15 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -490,9 +510,11 @@
             this.groupBox1.Controls.Add(this.labelLast90Days);
             this.groupBox1.Controls.Add(this.labelLast60Days);
             this.groupBox1.Controls.Add(this.labelLast30Days);
-            this.groupBox1.Location = new System.Drawing.Point(12, 522);
+            this.groupBox1.Location = new System.Drawing.Point(16, 642);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(861, 66);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1148, 81);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Outstanding Financials";
@@ -502,10 +524,11 @@
             this.textBoxOver90Days.Enabled = false;
             this.textBoxOver90Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxOver90Days.ForeColor = System.Drawing.Color.Red;
-            this.textBoxOver90Days.Location = new System.Drawing.Point(719, 28);
+            this.textBoxOver90Days.Location = new System.Drawing.Point(959, 34);
+            this.textBoxOver90Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxOver90Days.Name = "textBoxOver90Days";
             this.textBoxOver90Days.ReadOnly = true;
-            this.textBoxOver90Days.Size = new System.Drawing.Size(111, 20);
+            this.textBoxOver90Days.Size = new System.Drawing.Size(147, 23);
             this.textBoxOver90Days.TabIndex = 7;
             // 
             // textBoxLast90Days
@@ -513,10 +536,11 @@
             this.textBoxLast90Days.Enabled = false;
             this.textBoxLast90Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast90Days.ForeColor = System.Drawing.Color.Red;
-            this.textBoxLast90Days.Location = new System.Drawing.Point(512, 28);
+            this.textBoxLast90Days.Location = new System.Drawing.Point(683, 34);
+            this.textBoxLast90Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLast90Days.Name = "textBoxLast90Days";
             this.textBoxLast90Days.ReadOnly = true;
-            this.textBoxLast90Days.Size = new System.Drawing.Size(111, 20);
+            this.textBoxLast90Days.Size = new System.Drawing.Size(147, 23);
             this.textBoxLast90Days.TabIndex = 6;
             // 
             // textBoxLast60Days
@@ -524,10 +548,11 @@
             this.textBoxLast60Days.Enabled = false;
             this.textBoxLast60Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast60Days.ForeColor = System.Drawing.Color.Red;
-            this.textBoxLast60Days.Location = new System.Drawing.Point(286, 28);
+            this.textBoxLast60Days.Location = new System.Drawing.Point(381, 34);
+            this.textBoxLast60Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLast60Days.Name = "textBoxLast60Days";
             this.textBoxLast60Days.ReadOnly = true;
-            this.textBoxLast60Days.Size = new System.Drawing.Size(111, 20);
+            this.textBoxLast60Days.Size = new System.Drawing.Size(147, 23);
             this.textBoxLast60Days.TabIndex = 5;
             // 
             // textBoxLast30Days
@@ -535,56 +560,61 @@
             this.textBoxLast30Days.Enabled = false;
             this.textBoxLast30Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast30Days.ForeColor = System.Drawing.Color.Red;
-            this.textBoxLast30Days.Location = new System.Drawing.Point(80, 28);
+            this.textBoxLast30Days.Location = new System.Drawing.Point(107, 34);
+            this.textBoxLast30Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLast30Days.Name = "textBoxLast30Days";
             this.textBoxLast30Days.ReadOnly = true;
-            this.textBoxLast30Days.Size = new System.Drawing.Size(111, 20);
+            this.textBoxLast30Days.Size = new System.Drawing.Size(147, 23);
             this.textBoxLast30Days.TabIndex = 4;
             // 
             // labelOver90Days
             // 
             this.labelOver90Days.AutoSize = true;
-            this.labelOver90Days.Location = new System.Drawing.Point(638, 28);
+            this.labelOver90Days.Location = new System.Drawing.Point(851, 34);
+            this.labelOver90Days.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOver90Days.Name = "labelOver90Days";
-            this.labelOver90Days.Size = new System.Drawing.Size(75, 13);
+            this.labelOver90Days.Size = new System.Drawing.Size(99, 17);
             this.labelOver90Days.TabIndex = 3;
             this.labelOver90Days.Text = "Over 90 Days:";
             // 
             // labelLast90Days
             // 
             this.labelLast90Days.AutoSize = true;
-            this.labelLast90Days.Location = new System.Drawing.Point(434, 28);
+            this.labelLast90Days.Location = new System.Drawing.Point(579, 34);
+            this.labelLast90Days.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLast90Days.Name = "labelLast90Days";
-            this.labelLast90Days.Size = new System.Drawing.Size(72, 13);
+            this.labelLast90Days.Size = new System.Drawing.Size(95, 17);
             this.labelLast90Days.TabIndex = 2;
             this.labelLast90Days.Text = "Last 90 Days:";
             // 
             // labelLast60Days
             // 
             this.labelLast60Days.AutoSize = true;
-            this.labelLast60Days.Location = new System.Drawing.Point(208, 28);
+            this.labelLast60Days.Location = new System.Drawing.Point(277, 34);
+            this.labelLast60Days.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLast60Days.Name = "labelLast60Days";
-            this.labelLast60Days.Size = new System.Drawing.Size(72, 13);
+            this.labelLast60Days.Size = new System.Drawing.Size(95, 17);
             this.labelLast60Days.TabIndex = 1;
             this.labelLast60Days.Text = "Last 60 Days:";
             // 
             // labelLast30Days
             // 
             this.labelLast30Days.AutoSize = true;
-            this.labelLast30Days.Location = new System.Drawing.Point(6, 28);
+            this.labelLast30Days.Location = new System.Drawing.Point(8, 34);
+            this.labelLast30Days.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLast30Days.Name = "labelLast30Days";
-            this.labelLast30Days.Size = new System.Drawing.Size(72, 13);
+            this.labelLast30Days.Size = new System.Drawing.Size(95, 17);
             this.labelLast30Days.TabIndex = 0;
             this.labelLast30Days.Text = "Last 30 Days:";
             // 
             // groupBoxJobHistory
             // 
             this.groupBoxJobHistory.Controls.Add(this.labelJobCount);
-            this.groupBoxJobHistory.Location = new System.Drawing.Point(12, 602);
-            this.groupBoxJobHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxJobHistory.Location = new System.Drawing.Point(16, 741);
+            this.groupBoxJobHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxJobHistory.Name = "groupBoxJobHistory";
-            this.groupBoxJobHistory.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBoxJobHistory.Size = new System.Drawing.Size(861, 54);
+            this.groupBoxJobHistory.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxJobHistory.Size = new System.Drawing.Size(1148, 66);
             this.groupBoxJobHistory.TabIndex = 13;
             this.groupBoxJobHistory.TabStop = false;
             this.groupBoxJobHistory.Text = "Job History";
@@ -592,10 +622,9 @@
             // labelJobCount
             // 
             this.labelJobCount.AutoSize = true;
-            this.labelJobCount.Location = new System.Drawing.Point(6, 26);
-            this.labelJobCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelJobCount.Location = new System.Drawing.Point(8, 32);
             this.labelJobCount.Name = "labelJobCount";
-            this.labelJobCount.Size = new System.Drawing.Size(10, 13);
+            this.labelJobCount.Size = new System.Drawing.Size(12, 17);
             this.labelJobCount.TabIndex = 0;
             this.labelJobCount.Text = ".";
             // 
@@ -621,14 +650,14 @@
             this.chartJobs.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartJobs.Legends.Add(legend1);
-            this.chartJobs.Location = new System.Drawing.Point(11, 40);
-            this.chartJobs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chartJobs.Location = new System.Drawing.Point(15, 49);
+            this.chartJobs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chartJobs.Name = "chartJobs";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartJobs.Series.Add(series1);
-            this.chartJobs.Size = new System.Drawing.Size(861, 323);
+            this.chartJobs.Size = new System.Drawing.Size(1148, 398);
             this.chartJobs.TabIndex = 1;
             this.chartJobs.Text = "Job Visualisation";
             title1.Name = "Title1";
@@ -636,9 +665,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 665);
+            this.ClientSize = new System.Drawing.Size(1179, 818);
             this.Controls.Add(this.groupBoxJobHistory);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxEntry);
@@ -646,6 +675,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.chartJobs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

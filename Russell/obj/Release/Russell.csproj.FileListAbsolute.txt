@@ -8,3 +8,4 @@ D:\Development\Joe\Russell\obj\Release\Russell.csproj.CoreCompileInputs.cache
 D:\Development\Joe\Russell\obj\Release\Russell.exe
 D:\Development\Joe\Russell\obj\Release\Russell.pdb
 D:\Development\Joe\Russell\obj\Release\Russell.csprojAssemblyReference.cache
+D:\Development\Joe\Russell\obj\Release\Russell.FormOptions.resources

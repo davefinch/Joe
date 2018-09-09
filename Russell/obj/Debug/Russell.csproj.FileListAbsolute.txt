@@ -29,3 +29,4 @@ D:\Development\Joe\Russell\obj\Debug\Russell.csproj.CoreCompileInputs.cache
 D:\Development\Joe\Russell\obj\Debug\Russell.exe
 D:\Development\Joe\Russell\obj\Debug\Russell.pdb
 D:\Development\Joe\Russell\obj\Debug\Russell.FormOptions.resources
+D:\Development\Joe\Russell\obj\Debug\Russell.FormAbout.resources

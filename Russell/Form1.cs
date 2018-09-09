@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Configuration;
 
 
 namespace Russell
@@ -45,6 +46,8 @@ namespace Russell
                 comboBoxAgency.DataSource = listAgency.ToList();
                 comboBoxAgency.DisplayMember = "Key";
                 comboBoxAgency.ValueMember = "Value";
+                // Set the default Agency Type
+                comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
 
                 // Create and add the chart data
                 chartJobs.Series.Clear();
@@ -57,14 +60,18 @@ namespace Russell
                 //    IsXValueIndexed = true,
                 //    ChartType = SeriesChartType.StackedArea
                 //};
+
+                //Need to workout how to pull the charttype from the app.config
+                //String defaultChartStyle = ConfigurationManager.AppSettings["DefaultChartStyle"];
+
                 var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
                 {
                     Name = "Jobs",
                     Color = System.Drawing.Color.Blue,
                     IsVisibleInLegend = true,
                     IsXValueIndexed = true,
-                    ChartType = SeriesChartType.StackedBar
-            };
+                    ChartType = SeriesChartType.Bar
+                };
 
                 //this.chartJobs.Series.Add(series2);
                 this.chartJobs.Series.Add(series1);
@@ -518,8 +525,8 @@ namespace Russell
                 // Add to dgv - Or could just do a refresh of the dgv from the db??????????
                 jobRefresh();
 
-                // Clear down the insert window
-                comboBoxAgency.SelectedValue = 1;
+                // Clear down the insert window & Set the default Agency Type
+                comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
                 textBoxjobDetails.Text = "";
                 dateTimePickerStartJob.Value = DateTime.Now;
                 dateTimePickerEndJob.Value = DateTime.Now;
@@ -534,7 +541,8 @@ namespace Russell
 
         private void buttonClearJobDetails_Click(object sender, EventArgs e)
         {
-            comboBoxAgency.SelectedValue = 1;
+            // Set the default Agency Type
+            comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
             textBoxjobDetails.Text = "";
             //dateTimePickerStartJob.CustomFormat = " ";
             //dateTimePickerStartJob.Format = DateTimePickerFormat.Custom;
@@ -572,7 +580,7 @@ namespace Russell
         {
             // This is the options window
             FormOptions optionsForm = new FormOptions();
-            optionsForm.Show();
+            optionsForm.ShowDialog();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -586,6 +594,13 @@ namespace Russell
             {
                 Application.Exit();
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This is the About window
+            FormAbout aboutForm = new FormAbout();
+            aboutForm.ShowDialog();
         }
     }
 }
