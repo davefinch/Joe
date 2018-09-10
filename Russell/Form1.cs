@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Russell
@@ -19,16 +20,13 @@ namespace Russell
         {
             InitializeComponent();
             this.Text = Constants.AppName + " - " + Constants.UserFullName;
-
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // Initialise the entry window job id 
             textBoxJobId.Text = "0";
-            
+
             // Fill the dgv
             jobRefresh();
 
@@ -599,7 +597,7 @@ namespace Russell
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This is the About window
-            FormAbout aboutForm = new FormAbout();
+            AboutBoxJoe aboutForm = new AboutBoxJoe();
             aboutForm.ShowDialog();
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.DirectoryServices.AccountManagement;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Russell
 {
@@ -29,10 +30,14 @@ namespace Russell
             StartupFolder = ConfigurationManager.AppSettings["StartupFolder"];
 
             //ConnectionString = ConfigurationManager.ConnectionStrings["JO"].ConnectionString;
-            
-            // ********* Cannot store password in GitHub as MS picks it up and flags it as a security risk **********
-            //ConnectionString = ConfigurationManager.ConnectionStrings["Joe"].ConnectionString;
-            ConnectionString = "Data Source=logsysdev.database.windows.net;Initial Catalog=Joe;user id=finchd;password=LuckyStrike123";
+
+            // Get Secret from our external file
+            XmlDocument doc = new XmlDocument();
+            doc.Load("D:\\Development\\PassPhrase.xml");
+            XmlNode node = doc.DocumentElement.SelectSingleNode("passPhrase");
+            string passPhrase = node.InnerText;
+            // Assign the decrypted Connection String
+            ConnectionString = Helper.Decrypt(ConfigurationManager.ConnectionStrings["Joe"].ConnectionString, passPhrase);
 
             UserFullName = UserPrincipal.Current.DisplayName;
 
@@ -51,9 +56,6 @@ namespace Russell
             AppName = ConfigurationManager.AppSettings["AplicationName"];
             AppVersion = ConfigurationManager.AppSettings["ApplicationVersion"];
             DBMS = ConfigurationManager.AppSettings["DBMS"];
-
-
-
 
         }
 
