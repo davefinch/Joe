@@ -21,5 +21,14 @@ namespace Russell
         {
 
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                progressBar1.Value = i;
+                System.Threading.Thread.Sleep(50);
+            }
+        }
     }
 }

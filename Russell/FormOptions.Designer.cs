@@ -47,9 +47,9 @@
             this.groupBoxGeneral.Controls.Add(this.comboBoxDefaultAgency);
             this.groupBoxGeneral.Controls.Add(this.labelDefaultAgency);
             this.groupBoxGeneral.Location = new System.Drawing.Point(17, 16);
-            this.groupBoxGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxGeneral.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxGeneral.Name = "groupBoxGeneral";
-            this.groupBoxGeneral.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxGeneral.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxGeneral.Size = new System.Drawing.Size(585, 314);
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
@@ -58,7 +58,7 @@
             // buttonAddAgency
             // 
             this.buttonAddAgency.Location = new System.Drawing.Point(485, 49);
-            this.buttonAddAgency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddAgency.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddAgency.Name = "buttonAddAgency";
             this.buttonAddAgency.Size = new System.Drawing.Size(71, 28);
             this.buttonAddAgency.TabIndex = 4;
@@ -79,7 +79,7 @@
             // 
             this.comboBoxDefaultGraphStyle.FormattingEnabled = true;
             this.comboBoxDefaultGraphStyle.Location = new System.Drawing.Point(197, 110);
-            this.comboBoxDefaultGraphStyle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxDefaultGraphStyle.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxDefaultGraphStyle.Name = "comboBoxDefaultGraphStyle";
             this.comboBoxDefaultGraphStyle.Size = new System.Drawing.Size(243, 24);
             this.comboBoxDefaultGraphStyle.TabIndex = 2;
@@ -90,7 +90,7 @@
             this.comboBoxDefaultAgency.ForeColor = System.Drawing.SystemColors.WindowText;
             this.comboBoxDefaultAgency.FormattingEnabled = true;
             this.comboBoxDefaultAgency.Location = new System.Drawing.Point(197, 49);
-            this.comboBoxDefaultAgency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxDefaultAgency.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxDefaultAgency.Name = "comboBoxDefaultAgency";
             this.comboBoxDefaultAgency.Size = new System.Drawing.Size(243, 24);
             this.comboBoxDefaultAgency.TabIndex = 1;
@@ -108,7 +108,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(348, 348);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(111, 28);
             this.buttonCancel.TabIndex = 1;
@@ -118,10 +118,10 @@
             // 
             // buttonSaveClose
             // 
-            this.buttonSaveClose.Location = new System.Drawing.Point(503, 348);
-            this.buttonSaveClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSaveClose.Location = new System.Drawing.Point(482, 348);
+            this.buttonSaveClose.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveClose.Name = "buttonSaveClose";
-            this.buttonSaveClose.Size = new System.Drawing.Size(100, 28);
+            this.buttonSaveClose.Size = new System.Drawing.Size(121, 28);
             this.buttonSaveClose.TabIndex = 2;
             this.buttonSaveClose.Text = "Save && Close";
             this.buttonSaveClose.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             this.Controls.Add(this.buttonSaveClose);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.groupBoxGeneral);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormOptions";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormOptions_Load);

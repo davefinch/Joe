@@ -597,7 +597,9 @@ namespace Russell
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This is the About window
-            AboutBoxJoe aboutForm = new AboutBoxJoe();
+            //AboutBoxJoe aboutForm = new AboutBoxJoe();
+            //aboutForm.ShowDialog();
+            FormAbout aboutForm = new FormAbout();
             aboutForm.ShowDialog();
         }
     }
