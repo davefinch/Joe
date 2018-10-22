@@ -101,5 +101,10 @@ namespace Russell
             // Close window
             this.Close();
         }
+
+        private void groupBoxGeneral_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

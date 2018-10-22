@@ -60,28 +60,271 @@ namespace Russell
                 //};
 
                 //Need to workout how to pull the charttype from the app.config
-                //String defaultChartStyle = ConfigurationManager.AppSettings["DefaultChartStyle"];
+                string defaultChartStyle = ConfigurationManager.AppSettings["DefaultChartStyle"];
 
-                var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                if (defaultChartStyle == "Area")
                 {
-                    Name = "Jobs",
-                    Color = System.Drawing.Color.Blue,
-                    IsVisibleInLegend = true,
-                    IsXValueIndexed = true,
-                    ChartType = SeriesChartType.Bar
-                };
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Area
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
 
-                //this.chartJobs.Series.Add(series2);
-                this.chartJobs.Series.Add(series1);
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
 
-                List<DataChart> listDataChart = new List<DataChart>();
-                listDataChart = sql.SQLGetChartData();
-
-                foreach (DataChart item in listDataChart)
-                {
-                    //series2.Points.AddY(item.TotalAmount);
-                    series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
                 }
+                if (defaultChartStyle == "Bar")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Bar
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Area")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "BoxPlot",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.BoxPlot
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Bubble")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Bubble
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Candlestick")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Candlestick
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Column")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Column
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Doughnut")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Doughnut
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "ErrorBar")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.ErrorBar
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "FastLine")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.FastLine
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "FastPoint")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.FastPoint
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Funnel")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Funnel
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+
+
+                //    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                //{
+                //    Name = "Jobs",
+                //    Color = System.Drawing.Color.Blue,
+                //    IsVisibleInLegend = true,
+                //    IsXValueIndexed = true,
+                //};
+
+                ////this.chartJobs.Series.Add(series2);
+                //this.chartJobs.Series.Add(series1);
+
+                //List<DataChart> listDataChart = new List<DataChart>();
+                //listDataChart = sql.SQLGetChartData();
+
+                //foreach (DataChart item in listDataChart)
+                //{
+                //    //series2.Points.AddY(item.TotalAmount);
+                //    series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                //}
 
                 chartJobs.Invalidate();
             }

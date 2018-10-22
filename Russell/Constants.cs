@@ -19,6 +19,7 @@ namespace Russell
         public static string AppName { get; private set; }
         public static string AppVersion { get; private set; }
         public static string DBMS { get; private set; }
+        public static string ChartStyle { get; private set; }
         public enum RetrievalStatus
         {
             Single,
@@ -56,6 +57,7 @@ namespace Russell
             AppName = ConfigurationManager.AppSettings["AplicationName"];
             AppVersion = ConfigurationManager.AppSettings["ApplicationVersion"];
             DBMS = ConfigurationManager.AppSettings["DBMS"];
+            ChartStyle = ConfigurationManager.AppSettings["ChartStyle"];
 
         }
 

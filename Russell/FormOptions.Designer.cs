@@ -54,6 +54,7 @@
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General";
+            this.groupBoxGeneral.Enter += new System.EventHandler(this.groupBoxGeneral_Enter);
             // 
             // buttonAddAgency
             // 

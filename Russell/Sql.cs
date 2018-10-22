@@ -790,8 +790,22 @@ namespace Russell
                             DataChart dc = new DataChart();
 
                             dc.JobPeriod = reader["PeriodName"].ToString();
-                            dc.TotalJobs = Convert.ToInt32(reader["Count"]);
-                            dc.TotalAmount = Convert.ToDouble(reader["TotalAmount"]);
+                            if (!DBNull.Value.Equals(reader["Count"])) 
+                            {
+                                dc.TotalJobs = Convert.ToInt32(reader["Count"]);
+                            }
+                            else
+                            {
+                                dc.TotalJobs = 0;
+                            }
+                            if (!DBNull.Value.Equals(reader["Totalamount"]))
+                            {
+                                dc.TotalAmount = Convert.ToDouble(reader["TotalAmount"]);
+                            }
+                            else
+                            {
+                                dc.TotalAmount = 0;
+                            }
 
                             // Add to the DataRecord
                             listAmounts.Add(dc);
