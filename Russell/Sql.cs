@@ -90,7 +90,7 @@ namespace Russell
 
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("SELECT j.JobId, j.EmployeeId, e.FirstName, e.LastName, j.AgencyId, a.AgencyName, j.JobDetails, ");
-                    sb.AppendLine("j.StartJob, j.EndJob, j.PaymentReceived, j.TotalPayment  ");
+                    sb.AppendLine("j.StartJob, j.EndJob, j.PaymentReceived, j.TotalPayment, j.WebLink, j.MediaLink  ");
                     sb.AppendLine("FROM Job j INNER JOIN ");
                     sb.AppendLine("Employee e ON e.EmployeeId = j.EmployeeId INNER JOIN ");
                     sb.AppendLine("Agency a ON a.AgencyId = j.AgencyId ");
@@ -131,14 +131,8 @@ namespace Russell
                             dj.TotalPayment = Convert.ToDecimal(reader["TotalPayment"]);
                             dj.PaymentReceived = Convert.ToBoolean(reader["PaymentReceived"]);
 
-                            //dj.Hours = Convert.ToInt32(reader["Hours"]);
-                            //dj.Rate = Convert.ToDecimal(reader["Rate"]);
-
-                            //ordinal = reader.GetOrdinal("PaymentReceivedDate");
-                            //dj.PaymentReceivedDate = reader.IsDBNull(ordinal) ? (DateTime?)null : Convert.ToDateTime(reader["PaymentReceivedDate"]);
-                            //ordinal = reader.GetOrdinal("TotalPaymentReceived");
-
-
+                            dj.WebLink = reader["WebLink"].ToString();
+                            dj.MediaLink = reader["MediaLink"].ToString();
 
                             // Add to the DataRecord
                             listDataJob.Add(dj);
@@ -169,7 +163,7 @@ namespace Russell
                     StringBuilder sb = new StringBuilder();
 
                     sb.AppendLine("SELECT Job.JobId, Job.EmployeeId, Job.AgencyId, Agency.AgencyName, Job.JobDetails, Job.StartJob, Job.EndJob, ");
-                    sb.AppendLine("Job.TotalPayment, Job.PaymentReceived, Employee.FirstName, Employee.LastName ");
+                    sb.AppendLine("Job.TotalPayment, Job.PaymentReceived, Employee.FirstName, Employee.LastName, Job.WebLink, Job.MediaLink ");
                     sb.AppendLine("FROM (Job LEFT JOIN Agency ON Job.AgencyId = Agency.AgencyId) "); 
                     sb.AppendLine("INNER JOIN Employee ON Job.EmployeeId = Employee.EmployeeId ");
                     if (EditJobId > 0) { sb.AppendLine("WHERE Job.JobId = @EditJobId "); }
@@ -204,6 +198,8 @@ namespace Russell
                             dj.EndJob = reader.IsDBNull(ordinal) ? (DateTime?)null : Convert.ToDateTime(reader["EndJob"]);
                             dj.TotalPayment = Convert.ToDecimal(reader["TotalPayment"]);
                             dj.PaymentReceived = Convert.ToBoolean(reader["PaymentReceived"]);
+                            dj.WebLink = reader["WebLink"].ToString();
+                            dj.MediaLink = reader["MediaLink"].ToString();
 
                             // Add to the DataRecord
                             listDataJob.Add(dj);
@@ -227,9 +223,9 @@ namespace Russell
                 using (SqlCommand comm = new SqlCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment) ");
+                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment, WebLink, MediaLink) ");
                     sb.AppendLine("OUTPUT Inserted.JobId ");
-                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment) ");
+                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment, @WebLink, @MediaLink) ");
 
                     comm.CommandText = sb.ToString();
                     comm.Connection = conn;
@@ -241,6 +237,9 @@ namespace Russell
                     comm.Parameters.AddWithValue("@Endjob", dj.EndJob);
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
+                    comm.Parameters.AddWithValue("@WebLink", dj.WebLink);
+                    comm.Parameters.AddWithValue("@MediaLink", dj.MediaLink);
+
 
                     newJobId = Convert.ToInt32(comm.ExecuteScalar());
 
@@ -261,8 +260,8 @@ namespace Russell
                 using (OleDbCommand comm = new OleDbCommand())
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment) ");
-                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment) ");
+                    sb.AppendLine("INSERT INTO Job (EmployeeId, AgencyId, JobDetails, StartJob, Endjob, PaymentReceived, TotalPayment, JobLink, MediaLink) ");
+                    sb.AppendLine("VALUES (@EmployeeId, @AgencyId, @JobDetails, @StartJob, @EndJob, @PaymentReceived, @TotalPayment, @JobLink, @MediaLink) ");
                     comm.CommandText = sb.ToString();
                    
                     comm.Connection = conn;
@@ -274,6 +273,8 @@ namespace Russell
                     comm.Parameters.AddWithValue("@Endjob", Convert.ToDateTime(dj.EndJob).ToString());
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
+                    comm.Parameters.AddWithValue("@WebLink", dj.WebLink);
+                    comm.Parameters.AddWithValue("@MediaLink", dj.MediaLink);
 
                     comm.ExecuteNonQuery();
 
@@ -294,7 +295,8 @@ namespace Russell
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("UPDATE Job SET AgencyId = @AgencyId, JobDetails = @JobDetails, StartJob = @StartJob, ");
-                    sb.AppendLine("Endjob = @EndJob, PaymentReceived = @PaymentReceived, TotalPayment = @TotalPayment ");
+                    sb.AppendLine("Endjob = @EndJob, PaymentReceived = @PaymentReceived, TotalPayment = @TotalPayment, ");
+                    sb.AppendLine("WebLink = @WebLink, MediaLink = @MediaLink ");
                     sb.AppendLine("WHERE JobId = @JobId");
 
                     comm.CommandText = sb.ToString();
@@ -307,6 +309,8 @@ namespace Russell
                     comm.Parameters.AddWithValue("@Endjob", dj.EndJob);
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
+                    comm.Parameters.AddWithValue("@WebLink", dj.WebLink);
+                    comm.Parameters.AddWithValue("@MediaLink", dj.MediaLink);
 
                     comm.ExecuteScalar();
 
@@ -327,7 +331,8 @@ namespace Russell
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("UPDATE Job SET AgencyId = @AgencyId, JobDetails = @JobDetails, StartJob = @StartJob, ");
-                    sb.AppendLine("Endjob = @EndJob, PaymentReceived = @PaymentReceived, TotalPayment = @TotalPayment ");
+                    sb.AppendLine("Endjob = @EndJob, PaymentReceived = @PaymentReceived, TotalPayment = @TotalPayment, ");
+                    sb.AppendLine("WebLink = @WebLink, MediaLink = @MediaLink ");
                     sb.AppendLine("WHERE JobId = @JobId");
 
                     comm.CommandText = sb.ToString();
@@ -340,6 +345,8 @@ namespace Russell
                     comm.Parameters.AddWithValue("@Endjob", dj.EndJob);
                     comm.Parameters.AddWithValue("@PaymentReceived", dj.PaymentReceived);
                     comm.Parameters.AddWithValue("@TotalPayment", dj.TotalPayment);
+                    comm.Parameters.AddWithValue("@WebLink", dj.WebLink);
+                    comm.Parameters.AddWithValue("@MediaLink", dj.MediaLink);
 
                     comm.ExecuteScalar();
 
@@ -644,6 +651,77 @@ namespace Russell
                         agencyWebsite = (comm.ExecuteScalar().ToString());
 
                         return agencyWebsite;
+                    }
+                }
+            }
+        }
+
+        public string GetLink(int jobId, string linkType)
+        {
+            string returnURL;
+
+            if (Constants.DBMS == "MSSQL")
+            {
+                using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        StringBuilder sb = new StringBuilder();
+
+                        if (linkType == "WebLink")
+                        {
+                            sb.AppendLine("SELECT WebLink FROM Job");
+                            sb.AppendLine("WHERE JobId = @JobId ");
+                        }
+                        if (linkType == "MediaLink")
+                        {
+                            sb.AppendLine("SELECT MediaLink FROM Job");
+                            sb.AppendLine("WHERE JobId = @JobId ");
+                        }
+
+
+                        comm.CommandText = sb.ToString();
+                        comm.Connection = conn;
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@JobId", jobId);
+
+                        returnURL = (comm.ExecuteScalar().ToString());
+
+                        return returnURL;
+                    }
+                }
+            }
+            else
+            {
+                using (OleDbConnection conn = new OleDbConnection(Constants.ConnectionString))
+                {
+                    conn.Open();
+
+                    using (OleDbCommand comm = new OleDbCommand())
+                    {
+                        StringBuilder sb = new StringBuilder();
+
+                        if (linkType == "WebLink")
+                        {
+                            sb.AppendLine("SELECT WebLink FROM Job");
+                            sb.AppendLine("WHERE JobId = @JobId ");
+                        }
+                        if (linkType == "MediaLink")
+                        {
+                            sb.AppendLine("SELECT MediaLink FROM Job");
+                            sb.AppendLine("WHERE JobId = @JobId ");
+                        }
+
+                        comm.CommandText = sb.ToString();
+                        comm.Connection = conn;
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@JobId", jobId);
+
+                        returnURL = (comm.ExecuteScalar().ToString());
+
+                        return returnURL;
                     }
                 }
             }

@@ -45,6 +45,8 @@
             this.EndJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PaymentReceived = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.WebLink = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MediaLink = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelStartDate = new System.Windows.Forms.Label();
             this.dateTimePickerStartJob = new System.Windows.Forms.DateTimePicker();
             this.labelAgency = new System.Windows.Forms.Label();
@@ -59,6 +61,10 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonClearJobDetails = new System.Windows.Forms.Button();
             this.groupBoxEntry = new System.Windows.Forms.GroupBox();
+            this.textBoxMediaLink = new System.Windows.Forms.TextBox();
+            this.textBoxWebLink = new System.Windows.Forms.TextBox();
+            this.labelMediaLink = new System.Windows.Forms.Label();
+            this.labelWebLink = new System.Windows.Forms.Label();
             this.radioButtonGraph = new System.Windows.Forms.RadioButton();
             this.radioButtonData = new System.Windows.Forms.RadioButton();
             this.buttonBackup = new System.Windows.Forms.Button();
@@ -87,18 +93,18 @@
             this.labelLast30Days = new System.Windows.Forms.Label();
             this.groupBoxJobHistory = new System.Windows.Forms.GroupBox();
             this.labelJobCount = new System.Windows.Forms.Label();
+            this.chartJobs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.jobBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jODataSet = new Russell.JODataSet();
             this.jobTableAdapter = new Russell.JODataSetTableAdapters.JobTableAdapter();
-            this.chartJobs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewJobs)).BeginInit();
             this.groupBoxEntry.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxJobHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewJobs
@@ -115,12 +121,15 @@
             this.Startjob,
             this.EndJob,
             this.TotalPayment,
-            this.PaymentReceived});
+            this.PaymentReceived,
+            this.WebLink,
+            this.MediaLink});
             this.dataGridViewJobs.Location = new System.Drawing.Point(15, 49);
-            this.dataGridViewJobs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewJobs.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewJobs.Name = "dataGridViewJobs";
             this.dataGridViewJobs.Size = new System.Drawing.Size(1148, 398);
             this.dataGridViewJobs.TabIndex = 0;
+            this.dataGridViewJobs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewJobs_CellContentClick);
             // 
             // JobId
             // 
@@ -190,20 +199,33 @@
             this.PaymentReceived.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.PaymentReceived.Width = 65;
             // 
+            // WebLink
+            // 
+            this.WebLink.HeaderText = "WebLink";
+            this.WebLink.Name = "WebLink";
+            this.WebLink.Visible = false;
+            // 
+            // MediaLink
+            // 
+            this.MediaLink.HeaderText = "MediaLink";
+            this.MediaLink.Name = "MediaLink";
+            this.MediaLink.Visible = false;
+            // 
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(428, 39);
+            this.labelStartDate.Location = new System.Drawing.Point(435, 43);
             this.labelStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(72, 17);
             this.labelStartDate.TabIndex = 5;
             this.labelStartDate.Text = "StartDate:";
+            this.labelStartDate.Click += new System.EventHandler(this.labelStartDate_Click);
             // 
             // dateTimePickerStartJob
             // 
-            this.dateTimePickerStartJob.Location = new System.Drawing.Point(509, 39);
-            this.dateTimePickerStartJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerStartJob.Location = new System.Drawing.Point(438, 68);
+            this.dateTimePickerStartJob.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerStartJob.Name = "dateTimePickerStartJob";
             this.dateTimePickerStartJob.Size = new System.Drawing.Size(177, 22);
             this.dateTimePickerStartJob.TabIndex = 6;
@@ -212,7 +234,7 @@
             // labelAgency
             // 
             this.labelAgency.AutoSize = true;
-            this.labelAgency.Location = new System.Drawing.Point(20, 38);
+            this.labelAgency.Location = new System.Drawing.Point(39, 43);
             this.labelAgency.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAgency.Name = "labelAgency";
             this.labelAgency.Size = new System.Drawing.Size(59, 17);
@@ -222,7 +244,7 @@
             // labelEndDate
             // 
             this.labelEndDate.AutoSize = true;
-            this.labelEndDate.Location = new System.Drawing.Point(432, 90);
+            this.labelEndDate.Location = new System.Drawing.Point(435, 106);
             this.labelEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEndDate.Name = "labelEndDate";
             this.labelEndDate.Size = new System.Drawing.Size(71, 17);
@@ -232,7 +254,7 @@
             // textBoxjobDetails
             // 
             this.textBoxjobDetails.Location = new System.Drawing.Point(107, 89);
-            this.textBoxjobDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxjobDetails.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxjobDetails.Multiline = true;
             this.textBoxjobDetails.Name = "textBoxjobDetails";
             this.textBoxjobDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -241,8 +263,8 @@
             // 
             // dateTimePickerEndJob
             // 
-            this.dateTimePickerEndJob.Location = new System.Drawing.Point(509, 90);
-            this.dateTimePickerEndJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerEndJob.Location = new System.Drawing.Point(438, 131);
+            this.dateTimePickerEndJob.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerEndJob.Name = "dateTimePickerEndJob";
             this.dateTimePickerEndJob.Size = new System.Drawing.Size(177, 22);
             this.dateTimePickerEndJob.TabIndex = 8;
@@ -261,26 +283,27 @@
             // 
             this.comboBoxAgency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAgency.FormattingEnabled = true;
-            this.comboBoxAgency.Location = new System.Drawing.Point(107, 38);
-            this.comboBoxAgency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxAgency.Location = new System.Drawing.Point(107, 43);
+            this.comboBoxAgency.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAgency.Name = "comboBoxAgency";
             this.comboBoxAgency.Size = new System.Drawing.Size(301, 24);
             this.comboBoxAgency.TabIndex = 4;
             // 
             // labelTotalPayment
             // 
-            this.labelTotalPayment.Location = new System.Drawing.Point(751, 39);
+            this.labelTotalPayment.Location = new System.Drawing.Point(695, 49);
             this.labelTotalPayment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotalPayment.Name = "labelTotalPayment";
-            this.labelTotalPayment.Size = new System.Drawing.Size(116, 25);
+            this.labelTotalPayment.Size = new System.Drawing.Size(71, 24);
             this.labelTotalPayment.TabIndex = 14;
-            this.labelTotalPayment.Text = "Total Payment:";
+            this.labelTotalPayment.Text = "Payment:";
             this.labelTotalPayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTotalPayment.Click += new System.EventHandler(this.labelTotalPayment_Click);
             // 
             // textBoxTotalPayment
             // 
-            this.textBoxTotalPayment.Location = new System.Drawing.Point(875, 41);
-            this.textBoxTotalPayment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTotalPayment.Location = new System.Drawing.Point(782, 49);
+            this.textBoxTotalPayment.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTotalPayment.Name = "textBoxTotalPayment";
             this.textBoxTotalPayment.Size = new System.Drawing.Size(75, 22);
             this.textBoxTotalPayment.TabIndex = 15;
@@ -290,21 +313,23 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(735, 94);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.checkBox1.Location = new System.Drawing.Point(857, 49);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(152, 21);
+            this.checkBox1.Size = new System.Drawing.Size(93, 21);
             this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Payment Received:";
+            this.checkBox1.Text = "Received:";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(1044, 126);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Location = new System.Drawing.Point(1015, 144);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(96, 28);
+            this.buttonSave.Size = new System.Drawing.Size(125, 28);
             this.buttonSave.TabIndex = 20;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -312,8 +337,8 @@
             // 
             // buttonClearJobDetails
             // 
-            this.buttonClearJobDetails.Location = new System.Drawing.Point(911, 126);
-            this.buttonClearJobDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClearJobDetails.Location = new System.Drawing.Point(1015, 92);
+            this.buttonClearJobDetails.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClearJobDetails.Name = "buttonClearJobDetails";
             this.buttonClearJobDetails.Size = new System.Drawing.Size(125, 28);
             this.buttonClearJobDetails.TabIndex = 21;
@@ -323,6 +348,10 @@
             // 
             // groupBoxEntry
             // 
+            this.groupBoxEntry.Controls.Add(this.textBoxMediaLink);
+            this.groupBoxEntry.Controls.Add(this.textBoxWebLink);
+            this.groupBoxEntry.Controls.Add(this.labelMediaLink);
+            this.groupBoxEntry.Controls.Add(this.labelWebLink);
             this.groupBoxEntry.Controls.Add(this.radioButtonGraph);
             this.groupBoxEntry.Controls.Add(this.radioButtonData);
             this.groupBoxEntry.Controls.Add(this.buttonBackup);
@@ -342,13 +371,49 @@
             this.groupBoxEntry.Controls.Add(this.dateTimePickerStartJob);
             this.groupBoxEntry.Controls.Add(this.labelStartDate);
             this.groupBoxEntry.Location = new System.Drawing.Point(16, 454);
-            this.groupBoxEntry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxEntry.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxEntry.Name = "groupBoxEntry";
-            this.groupBoxEntry.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxEntry.Size = new System.Drawing.Size(1148, 165);
+            this.groupBoxEntry.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxEntry.Size = new System.Drawing.Size(1148, 180);
             this.groupBoxEntry.TabIndex = 10;
             this.groupBoxEntry.TabStop = false;
             this.groupBoxEntry.Text = "Job Details";
+            // 
+            // textBoxMediaLink
+            // 
+            this.textBoxMediaLink.Location = new System.Drawing.Point(782, 137);
+            this.textBoxMediaLink.Name = "textBoxMediaLink";
+            this.textBoxMediaLink.Size = new System.Drawing.Size(168, 22);
+            this.textBoxMediaLink.TabIndex = 30;
+            // 
+            // textBoxWebLink
+            // 
+            this.textBoxWebLink.Location = new System.Drawing.Point(782, 95);
+            this.textBoxWebLink.Name = "textBoxWebLink";
+            this.textBoxWebLink.Size = new System.Drawing.Size(168, 22);
+            this.textBoxWebLink.TabIndex = 29;
+            // 
+            // labelMediaLink
+            // 
+            this.labelMediaLink.AutoSize = true;
+            this.labelMediaLink.Location = new System.Drawing.Point(695, 142);
+            this.labelMediaLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMediaLink.Name = "labelMediaLink";
+            this.labelMediaLink.Size = new System.Drawing.Size(80, 17);
+            this.labelMediaLink.TabIndex = 28;
+            this.labelMediaLink.Text = "Media Link:";
+            this.labelMediaLink.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // labelWebLink
+            // 
+            this.labelWebLink.AutoSize = true;
+            this.labelWebLink.Location = new System.Drawing.Point(683, 100);
+            this.labelWebLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelWebLink.Name = "labelWebLink";
+            this.labelWebLink.Size = new System.Drawing.Size(92, 17);
+            this.labelWebLink.TabIndex = 27;
+            this.labelWebLink.Text = "Job Info Link:";
+            this.labelWebLink.Click += new System.EventHandler(this.labelWebLink_Click);
             // 
             // radioButtonGraph
             // 
@@ -378,7 +443,7 @@
             // buttonBackup
             // 
             this.buttonBackup.Enabled = false;
-            this.buttonBackup.Location = new System.Drawing.Point(812, 126);
+            this.buttonBackup.Location = new System.Drawing.Point(246, 154);
             this.buttonBackup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBackup.Name = "buttonBackup";
             this.buttonBackup.Size = new System.Drawing.Size(75, 28);
@@ -389,8 +454,9 @@
             // 
             // textBoxJobId
             // 
-            this.textBoxJobId.Location = new System.Drawing.Point(436, 128);
-            this.textBoxJobId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxJobId.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.textBoxJobId.Location = new System.Drawing.Point(107, 158);
+            this.textBoxJobId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxJobId.Name = "textBoxJobId";
             this.textBoxJobId.Size = new System.Drawing.Size(132, 22);
             this.textBoxJobId.TabIndex = 23;
@@ -398,13 +464,15 @@
             // 
             // buttonRefresh
             // 
-            this.buttonRefresh.Location = new System.Drawing.Point(1040, 63);
-            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRefresh.Enabled = false;
+            this.buttonRefresh.Location = new System.Drawing.Point(3, 152);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(100, 28);
             this.buttonRefresh.TabIndex = 22;
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Visible = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // menuStrip1
@@ -496,7 +564,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -511,9 +579,9 @@
             this.groupBox1.Controls.Add(this.labelLast60Days);
             this.groupBox1.Controls.Add(this.labelLast30Days);
             this.groupBox1.Location = new System.Drawing.Point(16, 642);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1148, 81);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
@@ -525,7 +593,7 @@
             this.textBoxOver90Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxOver90Days.ForeColor = System.Drawing.Color.Red;
             this.textBoxOver90Days.Location = new System.Drawing.Point(959, 34);
-            this.textBoxOver90Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxOver90Days.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxOver90Days.Name = "textBoxOver90Days";
             this.textBoxOver90Days.ReadOnly = true;
             this.textBoxOver90Days.Size = new System.Drawing.Size(147, 23);
@@ -537,7 +605,7 @@
             this.textBoxLast90Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast90Days.ForeColor = System.Drawing.Color.Red;
             this.textBoxLast90Days.Location = new System.Drawing.Point(683, 34);
-            this.textBoxLast90Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLast90Days.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLast90Days.Name = "textBoxLast90Days";
             this.textBoxLast90Days.ReadOnly = true;
             this.textBoxLast90Days.Size = new System.Drawing.Size(147, 23);
@@ -549,7 +617,7 @@
             this.textBoxLast60Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast60Days.ForeColor = System.Drawing.Color.Red;
             this.textBoxLast60Days.Location = new System.Drawing.Point(381, 34);
-            this.textBoxLast60Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLast60Days.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLast60Days.Name = "textBoxLast60Days";
             this.textBoxLast60Days.ReadOnly = true;
             this.textBoxLast60Days.Size = new System.Drawing.Size(147, 23);
@@ -561,7 +629,7 @@
             this.textBoxLast30Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLast30Days.ForeColor = System.Drawing.Color.Red;
             this.textBoxLast30Days.Location = new System.Drawing.Point(107, 34);
-            this.textBoxLast30Days.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLast30Days.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLast30Days.Name = "textBoxLast30Days";
             this.textBoxLast30Days.ReadOnly = true;
             this.textBoxLast30Days.Size = new System.Drawing.Size(147, 23);
@@ -628,20 +696,6 @@
             this.labelJobCount.TabIndex = 0;
             this.labelJobCount.Text = ".";
             // 
-            // jobBindingSource
-            // 
-            this.jobBindingSource.DataMember = "Job";
-            this.jobBindingSource.DataSource = this.jODataSet;
-            // 
-            // jODataSet
-            // 
-            this.jODataSet.DataSetName = "JODataSet";
-            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jobTableAdapter
-            // 
-            this.jobTableAdapter.ClearBeforeFill = true;
-            // 
             // chartJobs
             // 
             this.chartJobs.BorderlineColor = System.Drawing.Color.Black;
@@ -663,6 +717,20 @@
             title1.Name = "Title1";
             this.chartJobs.Titles.Add(title1);
             // 
+            // jobBindingSource
+            // 
+            this.jobBindingSource.DataMember = "Job";
+            this.jobBindingSource.DataSource = this.jODataSet;
+            // 
+            // jODataSet
+            // 
+            this.jODataSet.DataSetName = "JODataSet";
+            this.jODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // jobTableAdapter
+            // 
+            this.jobTableAdapter.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -675,7 +743,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.chartJobs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -688,9 +756,9 @@
             this.groupBox1.PerformLayout();
             this.groupBoxJobHistory.ResumeLayout(false);
             this.groupBoxJobHistory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jODataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartJobs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -738,6 +806,17 @@
         private System.Windows.Forms.Label labelLast90Days;
         private System.Windows.Forms.Label labelLast60Days;
         private System.Windows.Forms.Label labelLast30Days;
+        private System.Windows.Forms.TextBox textBoxJobId;
+        private System.Windows.Forms.Button buttonBackup;
+        private System.Windows.Forms.GroupBox groupBoxJobHistory;
+        private System.Windows.Forms.Label labelJobCount;
+        private System.Windows.Forms.RadioButton radioButtonGraph;
+        private System.Windows.Forms.RadioButton radioButtonData;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartJobs;
+        private System.Windows.Forms.Label labelWebLink;
+        private System.Windows.Forms.Label labelMediaLink;
+        private System.Windows.Forms.TextBox textBoxMediaLink;
+        private System.Windows.Forms.TextBox textBoxWebLink;
         private System.Windows.Forms.DataGridViewTextBoxColumn JobId;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn AgencyId;
@@ -747,13 +826,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EndJob;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPayment;
         private System.Windows.Forms.DataGridViewCheckBoxColumn PaymentReceived;
-        private System.Windows.Forms.TextBox textBoxJobId;
-        private System.Windows.Forms.Button buttonBackup;
-        private System.Windows.Forms.GroupBox groupBoxJobHistory;
-        private System.Windows.Forms.Label labelJobCount;
-        private System.Windows.Forms.RadioButton radioButtonGraph;
-        private System.Windows.Forms.RadioButton radioButtonData;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartJobs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WebLink;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MediaLink;
     }
 }
 

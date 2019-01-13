@@ -407,6 +407,8 @@ namespace Russell
                     dateTimePickerEndJob.Value = Convert.ToDateTime(item.EndJob);
                     checkBox1.Checked = item.PaymentReceived; // Cannot rename as pops open the save as dialog ?????
                     textBoxTotalPayment.Text = Math.Round(Convert.ToDecimal(item.TotalPayment), 2).ToString(); //item.TotalPayment.ToString();
+                    textBoxWebLink.Text = item.WebLink;
+                    textBoxMediaLink.Text = item.MediaLink;
 
                 }
             }
@@ -498,7 +500,34 @@ namespace Russell
             }
         }
 
-       
+        private void dgv_ShowWebLink()
+        {
+            string webLinkURL;
+
+            foreach (DataGridViewRow row in dataGridViewJobs.SelectedRows)
+            {
+                //Retrieve from database
+                using (Sql sql = new Sql())
+                {
+                    webLinkURL = sql.GetLink(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value), "WebLink");
+                    System.Diagnostics.Process.Start(webLinkURL);
+                }
+            }
+        }
+        private void dgv_ShowMediaLink()
+        {
+            string mediaLinkURL;
+
+            foreach (DataGridViewRow row in dataGridViewJobs.SelectedRows)
+            {
+                //Retrieve from database
+                using (Sql sql = new Sql())
+                {
+                    mediaLinkURL = sql.GetLink(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value), "MediaLink");
+                    System.Diagnostics.Process.Start(mediaLinkURL);
+                }
+            }
+        }
 
         private void dataGridViewJobs_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -523,6 +552,22 @@ namespace Russell
                 m.Items.Add("Mark as UnPaid");
                 m.Items.Add("-");
                 m.Items.Add("Visit Agency Website");
+                m.Items.Add("-");
+
+
+                var index = dataGridViewJobs.CurrentCell.RowIndex;
+
+
+                // CheckCells to see if we have job info? )
+                if (dataGridViewJobs.Rows[index].Cells["WebLink"].Value.ToString() != "")
+                { 
+                    m.Items.Add("Show Job Information");
+                }
+                // Check to see if we have media link
+                if (dataGridViewJobs.Rows[index].Cells["MediaLink"].Value.ToString() != "")
+                {
+                    m.Items.Add("Show Finished Work");
+                }
 
                 int currentMouseOverRow = dataGridViewJobs.HitTest(e.X, e.Y).RowIndex;
                 
@@ -584,6 +629,12 @@ namespace Russell
                 case "Visit Agency Website":
                     dgv_VisitAgency();
                     break;
+                case "Show Job Information":
+                    dgv_ShowWebLink();
+                    break;
+                case "Show Finished Work":
+                    dgv_ShowMediaLink();
+                    break;
             }
         }
 
@@ -632,6 +683,8 @@ namespace Russell
                     dataGridViewJobs.Rows[index].Cells["EndJob"].Value = item.EndJob;
                     dataGridViewJobs.Rows[index].Cells["PaymentReceived"].Value = item.PaymentReceived;
                     dataGridViewJobs.Rows[index].Cells["TotalPayment"].Value = item.TotalPayment;
+                    dataGridViewJobs.Rows[index].Cells["WebLink"].Value = item.WebLink;
+                    dataGridViewJobs.Rows[index].Cells["MediaLink"].Value = item.MediaLink;
 
                     // Colour the rows green if payment received
                     if (item.PaymentReceived) // Have received payment
@@ -731,6 +784,8 @@ namespace Russell
                 dj.EndJob = Convert.ToDateTime(dateTimePickerEndJob.Value);
                 dj.PaymentReceived = Convert.ToBoolean(checkBox1.Checked);
                 dj.TotalPayment = Convert.ToDecimal(textBoxTotalPayment.Text);
+                dj.WebLink = textBoxWebLink.Text;
+                dj.MediaLink = textBoxMediaLink.Text;
 
                 // Function determined by the type of db we are connecting to
                 if (Constants.DBMS == "MSSQL") 
@@ -774,6 +829,8 @@ namespace Russell
                 checkBox1.Checked = Convert.ToBoolean(0); // Cannot rename as pops open the save as dialog ?????
                 textBoxTotalPayment.Text = "0";
                 textBoxJobId.Text = "0";
+                textBoxWebLink.Text = "";
+                textBoxMediaLink.Text = "";
 
                 // Update the finance info
                 UpdateFinances();
@@ -794,6 +851,8 @@ namespace Russell
             checkBox1.Checked = Convert.ToBoolean(0); // Cannot rename as pops open the save as dialog ?????
             textBoxTotalPayment.Text = "0";
             textBoxJobId.Text = "0";
+            textBoxWebLink.Text = "";
+            textBoxMediaLink.Text = "";
         }
 
 
@@ -844,6 +903,36 @@ namespace Russell
             //aboutForm.ShowDialog();
             FormAbout aboutForm = new FormAbout();
             aboutForm.ShowDialog();
+        }
+
+        private void dataGridViewJobs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void labelStartDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTotalPayment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelWebLink_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
