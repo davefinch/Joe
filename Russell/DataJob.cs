@@ -42,6 +42,8 @@ namespace Russell
         public DateTime? EndJob { get; set; }
         public bool PaymentReceived { get; set; }
         public decimal TotalPayment { get; set; }
+        public string WebLink { get; set; }
+        public string MediaLink { get; set; }
 
 
 

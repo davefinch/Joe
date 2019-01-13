@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Russell
@@ -18,16 +20,13 @@ namespace Russell
         {
             InitializeComponent();
             this.Text = Constants.AppName + " - " + Constants.UserFullName;
-
-
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // Initialise the entry window job id 
             textBoxJobId.Text = "0";
-            
+
             // Fill the dgv
             jobRefresh();
 
@@ -45,6 +44,8 @@ namespace Russell
                 comboBoxAgency.DataSource = listAgency.ToList();
                 comboBoxAgency.DisplayMember = "Key";
                 comboBoxAgency.ValueMember = "Value";
+                // Set the default Agency Type
+                comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
 
                 // Create and add the chart data
                 chartJobs.Series.Clear();
@@ -57,26 +58,273 @@ namespace Russell
                 //    IsXValueIndexed = true,
                 //    ChartType = SeriesChartType.StackedArea
                 //};
-                var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+
+                //Need to workout how to pull the charttype from the app.config
+                string defaultChartStyle = ConfigurationManager.AppSettings["DefaultChartStyle"];
+
+                if (defaultChartStyle == "Area")
                 {
-                    Name = "Jobs",
-                    Color = System.Drawing.Color.Blue,
-                    IsVisibleInLegend = true,
-                    IsXValueIndexed = true,
-                    ChartType = SeriesChartType.StackedBar
-            };
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Area
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
 
-                //this.chartJobs.Series.Add(series2);
-                this.chartJobs.Series.Add(series1);
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
 
-                List<DataChart> listDataChart = new List<DataChart>();
-                listDataChart = sql.SQLGetChartData();
-
-                foreach (DataChart item in listDataChart)
-                {
-                    //series2.Points.AddY(item.TotalAmount);
-                    series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
                 }
+                if (defaultChartStyle == "Bar")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Bar
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Area")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "BoxPlot",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.BoxPlot
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Bubble")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Bubble
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Candlestick")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Candlestick
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Column")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Column
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Doughnut")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Doughnut
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "ErrorBar")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.ErrorBar
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "FastLine")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.FastLine
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "FastPoint")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.FastPoint
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+                if (defaultChartStyle == "Funnel")
+                {
+                    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                    {
+                        Name = "Jobs",
+                        Color = System.Drawing.Color.Blue,
+                        IsVisibleInLegend = true,
+                        IsXValueIndexed = true,
+                        ChartType = SeriesChartType.Funnel
+                    };
+                    //this.chartJobs.Series.Add(series2);
+                    this.chartJobs.Series.Add(series1);
+
+                    List<DataChart> listDataChart = new List<DataChart>();
+                    listDataChart = sql.SQLGetChartData();
+
+                    foreach (DataChart item in listDataChart)
+                    {
+                        //series2.Points.AddY(item.TotalAmount);
+                        series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                    }
+                }
+
+
+                //    var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
+                //{
+                //    Name = "Jobs",
+                //    Color = System.Drawing.Color.Blue,
+                //    IsVisibleInLegend = true,
+                //    IsXValueIndexed = true,
+                //};
+
+                ////this.chartJobs.Series.Add(series2);
+                //this.chartJobs.Series.Add(series1);
+
+                //List<DataChart> listDataChart = new List<DataChart>();
+                //listDataChart = sql.SQLGetChartData();
+
+                //foreach (DataChart item in listDataChart)
+                //{
+                //    //series2.Points.AddY(item.TotalAmount);
+                //    series1.Points.AddXY(item.JobPeriod, item.TotalJobs);
+                //}
 
                 chartJobs.Invalidate();
             }
@@ -159,6 +407,8 @@ namespace Russell
                     dateTimePickerEndJob.Value = Convert.ToDateTime(item.EndJob);
                     checkBox1.Checked = item.PaymentReceived; // Cannot rename as pops open the save as dialog ?????
                     textBoxTotalPayment.Text = Math.Round(Convert.ToDecimal(item.TotalPayment), 2).ToString(); //item.TotalPayment.ToString();
+                    textBoxWebLink.Text = item.WebLink;
+                    textBoxMediaLink.Text = item.MediaLink;
 
                 }
             }
@@ -250,7 +500,34 @@ namespace Russell
             }
         }
 
-       
+        private void dgv_ShowWebLink()
+        {
+            string webLinkURL;
+
+            foreach (DataGridViewRow row in dataGridViewJobs.SelectedRows)
+            {
+                //Retrieve from database
+                using (Sql sql = new Sql())
+                {
+                    webLinkURL = sql.GetLink(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value), "WebLink");
+                    System.Diagnostics.Process.Start(webLinkURL);
+                }
+            }
+        }
+        private void dgv_ShowMediaLink()
+        {
+            string mediaLinkURL;
+
+            foreach (DataGridViewRow row in dataGridViewJobs.SelectedRows)
+            {
+                //Retrieve from database
+                using (Sql sql = new Sql())
+                {
+                    mediaLinkURL = sql.GetLink(Convert.ToInt32(dataGridViewJobs.Rows[row.Index].Cells["JobId"].Value), "MediaLink");
+                    System.Diagnostics.Process.Start(mediaLinkURL);
+                }
+            }
+        }
 
         private void dataGridViewJobs_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -275,6 +552,22 @@ namespace Russell
                 m.Items.Add("Mark as UnPaid");
                 m.Items.Add("-");
                 m.Items.Add("Visit Agency Website");
+                m.Items.Add("-");
+
+
+                var index = dataGridViewJobs.CurrentCell.RowIndex;
+
+
+                // CheckCells to see if we have job info? )
+                if (dataGridViewJobs.Rows[index].Cells["WebLink"].Value.ToString() != "")
+                { 
+                    m.Items.Add("Show Job Information");
+                }
+                // Check to see if we have media link
+                if (dataGridViewJobs.Rows[index].Cells["MediaLink"].Value.ToString() != "")
+                {
+                    m.Items.Add("Show Finished Work");
+                }
 
                 int currentMouseOverRow = dataGridViewJobs.HitTest(e.X, e.Y).RowIndex;
                 
@@ -336,6 +629,12 @@ namespace Russell
                 case "Visit Agency Website":
                     dgv_VisitAgency();
                     break;
+                case "Show Job Information":
+                    dgv_ShowWebLink();
+                    break;
+                case "Show Finished Work":
+                    dgv_ShowMediaLink();
+                    break;
             }
         }
 
@@ -384,6 +683,8 @@ namespace Russell
                     dataGridViewJobs.Rows[index].Cells["EndJob"].Value = item.EndJob;
                     dataGridViewJobs.Rows[index].Cells["PaymentReceived"].Value = item.PaymentReceived;
                     dataGridViewJobs.Rows[index].Cells["TotalPayment"].Value = item.TotalPayment;
+                    dataGridViewJobs.Rows[index].Cells["WebLink"].Value = item.WebLink;
+                    dataGridViewJobs.Rows[index].Cells["MediaLink"].Value = item.MediaLink;
 
                     // Colour the rows green if payment received
                     if (item.PaymentReceived) // Have received payment
@@ -483,6 +784,8 @@ namespace Russell
                 dj.EndJob = Convert.ToDateTime(dateTimePickerEndJob.Value);
                 dj.PaymentReceived = Convert.ToBoolean(checkBox1.Checked);
                 dj.TotalPayment = Convert.ToDecimal(textBoxTotalPayment.Text);
+                dj.WebLink = textBoxWebLink.Text;
+                dj.MediaLink = textBoxMediaLink.Text;
 
                 // Function determined by the type of db we are connecting to
                 if (Constants.DBMS == "MSSQL") 
@@ -518,14 +821,16 @@ namespace Russell
                 // Add to dgv - Or could just do a refresh of the dgv from the db??????????
                 jobRefresh();
 
-                // Clear down the insert window
-                comboBoxAgency.SelectedValue = 1;
+                // Clear down the insert window & Set the default Agency Type
+                comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
                 textBoxjobDetails.Text = "";
                 dateTimePickerStartJob.Value = DateTime.Now;
                 dateTimePickerEndJob.Value = DateTime.Now;
                 checkBox1.Checked = Convert.ToBoolean(0); // Cannot rename as pops open the save as dialog ?????
                 textBoxTotalPayment.Text = "0";
                 textBoxJobId.Text = "0";
+                textBoxWebLink.Text = "";
+                textBoxMediaLink.Text = "";
 
                 // Update the finance info
                 UpdateFinances();
@@ -534,7 +839,8 @@ namespace Russell
 
         private void buttonClearJobDetails_Click(object sender, EventArgs e)
         {
-            comboBoxAgency.SelectedValue = 1;
+            // Set the default Agency Type
+            comboBoxAgency.SelectedValue = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultAgencyId"]);
             textBoxjobDetails.Text = "";
             //dateTimePickerStartJob.CustomFormat = " ";
             //dateTimePickerStartJob.Format = DateTimePickerFormat.Custom;
@@ -545,6 +851,8 @@ namespace Russell
             checkBox1.Checked = Convert.ToBoolean(0); // Cannot rename as pops open the save as dialog ?????
             textBoxTotalPayment.Text = "0";
             textBoxJobId.Text = "0";
+            textBoxWebLink.Text = "";
+            textBoxMediaLink.Text = "";
         }
 
 
@@ -572,7 +880,7 @@ namespace Russell
         {
             // This is the options window
             FormOptions optionsForm = new FormOptions();
-            optionsForm.Show();
+            optionsForm.ShowDialog();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -586,6 +894,45 @@ namespace Russell
             {
                 Application.Exit();
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This is the About window
+            //AboutBoxJoe aboutForm = new AboutBoxJoe();
+            //aboutForm.ShowDialog();
+            FormAbout aboutForm = new FormAbout();
+            aboutForm.ShowDialog();
+        }
+
+        private void dataGridViewJobs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void labelStartDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTotalPayment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelWebLink_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

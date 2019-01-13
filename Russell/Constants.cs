@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.DirectoryServices.AccountManagement;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Russell
 {
@@ -18,6 +19,7 @@ namespace Russell
         public static string AppName { get; private set; }
         public static string AppVersion { get; private set; }
         public static string DBMS { get; private set; }
+        public static string ChartStyle { get; private set; }
         public enum RetrievalStatus
         {
             Single,
@@ -28,8 +30,15 @@ namespace Russell
         {
             StartupFolder = ConfigurationManager.AppSettings["StartupFolder"];
 
-           //ConnectionString = ConfigurationManager.ConnectionStrings["JO"].ConnectionString;
-           ConnectionString = ConfigurationManager.ConnectionStrings["Joe"].ConnectionString;
+            //ConnectionString = ConfigurationManager.ConnectionStrings["JO"].ConnectionString;
+
+            // Get Secret from our external file
+            XmlDocument doc = new XmlDocument();
+            doc.Load("D:\\Development\\PassPhrase.xml");
+            XmlNode node = doc.DocumentElement.SelectSingleNode("passPhrase");
+            string passPhrase = node.InnerText;
+            // Assign the decrypted Connection String
+            ConnectionString = Helper.Decrypt(ConfigurationManager.ConnectionStrings["Joe"].ConnectionString, passPhrase);
 
             UserFullName = UserPrincipal.Current.DisplayName;
 
@@ -48,9 +57,7 @@ namespace Russell
             AppName = ConfigurationManager.AppSettings["AplicationName"];
             AppVersion = ConfigurationManager.AppSettings["ApplicationVersion"];
             DBMS = ConfigurationManager.AppSettings["DBMS"];
-
-
-
+            ChartStyle = ConfigurationManager.AppSettings["ChartStyle"];
 
         }
 
