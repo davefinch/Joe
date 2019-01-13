@@ -4,3 +4,4 @@
 *.ide-shm
 .vs/Russell/v15/Server/sqlite3/storage.ide-shm
 *.ide-wal
+.vs/Russell/v15/.suo
